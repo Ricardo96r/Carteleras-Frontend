@@ -14,7 +14,36 @@ angular.module('SimpleRESTIonic.controllers', [])
                 });
         }
 
-        function clearData(){
+        function getDestacados() {
+            ItemsModel.destacados_()
+                .then(function (result) {
+                    vm.destacados = result.data;
+                });
+        }
+
+        function getEstrenos() {
+            ItemsModel.nuevos()
+                .then(function (result) {
+                    vm.estreno = result.data;
+                });
+        }
+
+        function getGeneros() {
+            ItemsModel.generos()
+                .then(function (result) {
+                    vm.generos = result.data;
+                });
+        }
+
+        function getPorGenero(object) {
+            ItemsModel.porGenero(object)
+                .then(function (result) {
+                    vm.porGener = result.data;
+                });
+            return vm.porGener;
+        }
+
+        function clearData() {
             vm.data = null;
         }
 
@@ -69,6 +98,10 @@ angular.module('SimpleRESTIonic.controllers', [])
         vm.edited = null;
         vm.isEditing = false;
         vm.isCreating = false;
+        vm.getDestacados = getDestacados;
+        vm.getEstrenos = getEstrenos;
+        vm.getGeneros = getGeneros;
+        vm.getPorGenero = getPorGenero;
         vm.getAll = getAll;
         vm.create = create;
         vm.update = update;
@@ -89,11 +122,14 @@ angular.module('SimpleRESTIonic.controllers', [])
             clearData();
         });
 
-        if(!vm.isAuthorized){
+        if (!vm.isAuthorized) {
             $rootScope.$broadcast('logout');
         }
 
         initCreateForm();
         getAll();
+        getDestacados();
+        getEstrenos();
+        getGeneros();
     });
 

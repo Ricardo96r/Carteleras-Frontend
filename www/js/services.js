@@ -29,8 +29,24 @@ angular.module('SimpleRESTIonic.services', [])
         };
 
         service.limit = function () {
-            return $http.get(Backand.getApiUrl() + '/1/query/data/SelectNombre');
+            return $http.get(Backand.getApiUrl() + '/1/query/data/SelectDestacado');
         };
+
+        service.destacados_ = function () {
+            return $http.get(Backand.getApiUrl() + '/1/query/data/SelectDestacado');
+        };
+
+        service.nuevos = function () {
+            return $http.get(Backand.getApiUrl() + '/1/query/data/SelectNuevo');
+        };
+
+        service.generos = function () {
+            return $http.get(Backand.getApiUrl() + '/1/query/data/SelectNombresGeneros');
+        };
+
+        service.porGenero = function(object) {
+            return $http.post(Backand.getApiUrl() + '/1/query/data/SelectPeliculaPorGenero', object);
+        }
 
         service.fetch = function (id) {
             return $http.get(getUrlForId(id));
