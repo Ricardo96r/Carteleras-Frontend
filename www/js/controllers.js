@@ -38,12 +38,11 @@ angular.module('SimpleRESTIonic.controllers', [])
                 });
         }
 
-        function getPorGenero(object) {
-            ItemsModel.porGenero(object)
+        function getPorGenero() {
+            ItemsModel.porGenero()
                 .then(function (result) {
-                    vm.porGener = result.data;
+                    vm.porGenero= result.data;
                 });
-            return vm.porGener;
         }
 
         function clearData() {
@@ -134,5 +133,6 @@ angular.module('SimpleRESTIonic.controllers', [])
         getDestacados();
         getEstrenos();
         getGeneros();
+		getPorGenero();
     });
 
