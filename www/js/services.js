@@ -44,9 +44,9 @@ angular.module('SimpleRESTIonic.services', [])
             return $http.get(Backand.getApiUrl() + '/1/query/data/SelectNombresGeneros');
         };
 
-        service.porGenero = function(object) {
-            return $http.post(Backand.getApiUrl() + '/1/query/data/SelectPeliculaPorGenero', object);
-        }
+        service.porGenero = function() {
+            return $http.get(Backand.getApiUrl() + '/1/query/data/SelectPeliculaPorGenero?parameters=%7B%22nombreGenero%22:%22Animacion%22%7D');
+        };
 
         service.fetch = function (id) {
             return $http.get(getUrlForId(id));
