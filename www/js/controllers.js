@@ -1,4 +1,7 @@
 angular.module('SimpleRESTIonic.controllers', [])
+    .controller('CineCtrl', function () {
+
+    })
 
     .controller('DashboardCtrl', function (ItemsModel, $rootScope) {
         var vm = this;

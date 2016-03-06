@@ -1,6 +1,6 @@
 <ion-view view-title="Cartelera">
-    <ion-content class="content padding has-header" direction="y">
-        <h3>Destacados</h3>
+    <ion-content class="padding has-header" style="background-color: #f3f3eb;" direction="y">
+        <h4 class="cartelera-genero">Destacados</h4>
         <ion-scroll direction="x">
             <div class="row">
                 <div class="col col-50" ng-repeat="destacado in vm.destacados">
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </ion-scroll>
-        <h3>Nuevos Estrenos</h3>
+        <h4 class="cartelera-genero">Nuevos estrenos</h4>
         <ion-scroll direction="x">
             <div class="row">
                 <div class="col col-50" ng-repeat="nuevo in vm.estreno">
@@ -31,7 +31,7 @@
             </div>
         </ion-scroll>
         <div ng-repeat="genero in vm.generos">
-            <h3>{{ genero.Genero }}</h3>
+            <h4 class="cartelera-genero">{{ genero.Genero }}</h4>
             <ion-scroll direction="x">
                 <div class="row">
                     <div class="col col-50" ng-repeat="object in vm.data">

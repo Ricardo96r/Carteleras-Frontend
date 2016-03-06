@@ -19,3 +19,10 @@
 .item-icon-left .icon, .item-icon-right .icon {
 	font-size: 22px;
 }
+
+.cartelera-genero {
+	background-color: #ef473a;
+	border-radius: 5px;
+	padding: 10px;
+	color: white;
+}
