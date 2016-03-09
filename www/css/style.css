@@ -1,28 +1,13 @@
 /* Empty. Add your own CSS if you like */
-.icon.new-item {
-	position: absolute;
-	right: 20px;
-	font-size: 20px;
-	bottom: 13px;
-}
-.cancel-create {
-	position: absolute;
-	right: 20px;
-	font-size: 14px;
-	bottom: 13px;
-	color:#ef4e3a;
-}
-[ng-click], [data-ng-click], [x-ng-click] {
-    cursor: pointer;
-}
-/* Ionic Overwrite! */
-.item-icon-left .icon, .item-icon-right .icon {
-	font-size: 22px;
-}
-
 .cartelera-genero {
 	background-color: #ef473a;
 	border-radius: 5px;
 	padding: 10px;
 	color: white;
+}
+
+.ion-scroll-horizontal-fix {
+	overflow-x: auto;
+	overflow-y: hidden ;
+	white-space: nowrap;
 }

@@ -1,7 +1,7 @@
 <ion-view view-title="Cartelera">
-    <ion-content class="padding has-header" style="background-color: #f3f3eb;" direction="y">
+    <ion-content class="padding has-header" style="background-color: #f3f3eb;" direction="y" overflow-scroll="true">
         <h4 class="cartelera-genero">Nuevos estrenos</h4>
-        <ion-scroll direction="x">
+        <div class="ion-scroll-horizontal-fix">
             <div class="row">
                 <div class="col col-50" ng-repeat="nuevo in vm.estreno">
                     <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
@@ -14,10 +14,10 @@
                     </div>
                 </div>
             </div>
-        </ion-scroll>
-		
+        </div>
+
 		<h4 class="cartelera-genero">Destacados</h4>
-        <ion-scroll direction="x">
+        <div class="ion-scroll-horizontal-fix">
             <div class="row">
                 <div class="col col-50" ng-repeat="destacado in vm.destacados">
                     <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
@@ -30,11 +30,11 @@
                     </div>
                 </div>
             </div>
-        </ion-scroll>
-        
+        </div>
+
         <div ng-repeat="genero in vm.generos">
             <h4 class="cartelera-genero">{{ genero.Genero }}</h4>
-            <ion-scroll direction="x">
+            <div class="ion-scroll-horizontal-fix">
                 <div class="row" ng-init="vm.getPorGenero(genero.Genero)">
                     <div class="col col-50" ng-repeat="object in vm.porGenero[$index]">
                         <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-            </ion-scroll>
+            </div>
         </div>
     </ion-content>
 </ion-view>
