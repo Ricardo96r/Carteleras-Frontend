@@ -11,41 +11,46 @@ angular.module('SimpleRESTIonic.services', [])
         };
     })
 
-    .service('ItemsModel', function ($http, Backand) {
+    .service('PeliculasModel', function ($http, Backand) {
         var service = this,
             baseUrl = '/1/objects/',
-            objectName = 'Pelicula/';
+            objectName = 'Pelicula/',
+            queryUrl = '/1/query/data/';
 
         function getUrl() {
             return Backand.getApiUrl() + baseUrl + objectName;
+        }
+
+        function getQueryUrl(query) {
+            return Backand.getApiUrl() + queryUrl + query;
         }
 
         function getUrlForId(id) {
             return getUrl() + id;
         }
 
-        service.all = function () {
-            return $http.get(getUrl());
-        };
-
-        service.limit = function () {
-            return $http.get(Backand.getApiUrl() + '/1/query/data/SelectDestacado');
-        };
-
-        service.destacados_ = function () {
-            return $http.get(Backand.getApiUrl() + '/1/query/data/SelectDestacado');
+        service.destacados = function () {
+            return $http.get(getQueryUrl('SelectDestacado'));
         };
 
         service.nuevos = function () {
-            return $http.get(Backand.getApiUrl() + '/1/query/data/SelectNuevo');
+            return $http.get(getQueryUrl('SelectNuevo'));
         };
 
         service.generos = function () {
-            return $http.get(Backand.getApiUrl() + '/1/query/data/SelectNombresGeneros');
+            return $http.get(getQueryUrl('SelectNombresGeneros'));
         };
 
-        service.porGenero = function() {
-            return $http.get(Backand.getApiUrl() + '/1/query/data/SelectPeliculaPorGenero?parameters=%7B%22nombreGenero%22:%22Animacion%22%7D');
+        service.porGenero = function(genero) {
+            return $http ({
+                method: 'GET',
+                url: getQueryUrl('SelectPeliculaPorGenero'),
+                params: {
+                    parameters: {
+                        nombreGenero: genero
+                    }
+                }
+            });
         };
 
         service.fetch = function (id) {

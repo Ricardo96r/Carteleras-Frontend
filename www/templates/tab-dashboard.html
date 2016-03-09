@@ -35,8 +35,8 @@
         <div ng-repeat="genero in vm.generos">
             <h4 class="cartelera-genero">{{ genero.Genero }}</h4>
             <ion-scroll direction="x">
-                <div class="row">
-                    <div class="col col-50" ng-repeat="object in vm.porGenero">
+                <div class="row" ng-init="vm.getPorGenero(genero.Genero)">
+                    <div class="col col-50" ng-repeat="object in vm.porGenero[$index]">
                         <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
                             <div class="item">
                                 <h2>{{ object.Nombre }}</h2>
