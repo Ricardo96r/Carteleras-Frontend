@@ -1,4 +1,18 @@
 angular.module('SimpleRESTIonic.controllers', [])
+    .controller('PeliculaCtrl', function (PeliculasModel, $stateParams, $rootScope) {
+        var vm = this;
+
+        function getPelicula() {
+            PeliculasModel.fetch($stateParams.id)
+                .then(function (result) {
+                    vm.pelicula = result.data;
+                });
+        }
+
+        vm.getPelicula = getPelicula;
+        getPelicula();
+    })
+
     .controller('CineCtrl', function () {
 
     })

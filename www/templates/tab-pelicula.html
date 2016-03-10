@@ -1,0 +1,33 @@
+<ion-view view-title="{{ vm.pelicula.Nombre }}">
+    <ion-content class="content padding has-header">
+        <div class="pelicula-fondo">
+            <div class="row">
+                <div class="col col-33">
+                    <img src="{{ vm.pelicula.Poster }}" style="width: 100%">
+                </div>
+                <div class="col col-50">
+                    <h4 style="color:white">Género: {{ vm.pelicula.Genero }}</h4>
+                    <h4 style="color:white">Censura: {{ vm.pelicula.Clasificacion }}</h4>
+                    <h4 style="color:white">{{ vm.pelicula.Duracion }} minutos</h4>
+                    <h4 style="color:white">Director: {{ vm.pelicula.Director }}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="list">
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Fecha
+                </div>
+                <select>
+                    <option ng-repeat="for in [0, 1, 2, 3, 4, 5]">Fecha {{ $index }}</option>
+                </select>
+            </label>
+        </div>
+        <div class="list" ng-repeat="for in [0, 1, 2, 3, 4, 5]">
+            <a class="item" href="#">
+                <h2>Millenium</h2>
+                <p>12:00 PM    3:30 PM    5:00 PM</p>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

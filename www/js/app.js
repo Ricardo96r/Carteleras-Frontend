@@ -48,17 +48,17 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                     'tab-cine': {
                         templateUrl: 'templates/tab-cine.html',
                         controller: 'CineCtrl as cine'
-                    }
+                    },
                 }
             })
-            .state('tab.busqueda', {
-                url: '/busqueda',
+            .state('tab.pelicula', {
+                url: '/pelicula/:id',
                 views: {
-                    'tab-busqueda': {
-                        templateUrl: 'templates/tab-busqueda.html',
-                        controller: 'BusquedaCtrl as busqueda'
+                    'tab-dashboard': {
+                        templateUrl: 'templates/tab-pelicula.html',
+                        controller: 'PeliculaCtrl as vm',
                     }
-                }
+                },
             });
 
         $urlRouterProvider.otherwise('/tabs/dashboard');

@@ -10,4 +10,10 @@
 	overflow-x: auto;
 	overflow-y: hidden ;
 	white-space: nowrap;
+	z-index: 0;
+}
+
+.pelicula-fondo {
+	background-color: #ef473a;
+	margin:-10px;
 }

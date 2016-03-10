@@ -1,53 +1,59 @@
 <ion-view view-title="Cartelera">
-    <ion-content class="padding has-header" style="background-color: #f3f3eb;" direction="y" overflow-scroll="true">
+    <ion-content class="padding has-header" style="background-color: #f3f3eb;">
         <h4 class="cartelera-genero">Nuevos estrenos</h4>
-        <div class="ion-scroll-horizontal-fix">
+        <ion-scroll direction="x">
             <div class="row">
                 <div class="col col-50" ng-repeat="nuevo in vm.estreno">
-                    <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
-                        <div class="item">
-                            <h2>{{ nuevo.Nombre }}</h2>
+                    <a href="#/tabs/pelicula/{{nuevo.ID}}">
+                        <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
+                            <div class="item">
+                                <h2>{{ nuevo.Nombre }}</h2>
+                            </div>
+                            <div class="item item-image">
+                                <img src="{{ nuevo.Poster }}" style="max-height: 180px;">
+                            </div>
                         </div>
-                        <div class="item item-image">
-                            <img src="{{ nuevo.Poster }}" style="max-height: 180px;">
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </div>
-        </div>
+        </ion-scroll>
 
-		<h4 class="cartelera-genero">Destacados</h4>
-        <div class="ion-scroll-horizontal-fix">
+        <h4 class="cartelera-genero">Destacados</h4>
+        <ion-scroll direction="x">
             <div class="row">
                 <div class="col col-50" ng-repeat="destacado in vm.destacados">
-                    <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
-                        <div class="item">
-                            <h2>{{ destacado.Nombre }}</h2>
+                    <a href="#/tabs/pelicula/{{destacado.ID}}">
+                        <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
+                            <div class="item">
+                                <h2>{{ destacado.Nombre }}</h2>
+                            </div>
+                            <div class="item item-image">
+                                <img src="{{ destacado.Poster }}" style="max-height: 180px;">
+                            </div>
                         </div>
-                        <div class="item item-image">
-                            <img src="{{ destacado.Poster }}" style="max-height: 180px;">
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </div>
-        </div>
+        </ion-scroll>
 
         <div ng-repeat="genero in vm.generos">
             <h4 class="cartelera-genero">{{ genero.Genero }}</h4>
-            <div class="ion-scroll-horizontal-fix">
+            <ion-scroll direction="x">
                 <div class="row" ng-init="vm.getPorGenero(genero.Genero)">
                     <div class="col col-50" ng-repeat="object in vm.porGenero[$index]">
-                        <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
-                            <div class="item">
-                                <h2>{{ object.Nombre }}</h2>
+                        <a href="#/tabs/pelicula/{{object.ID}}">
+                            <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
+                                <div class="item">
+                                    <h2>{{ object.Nombre }}</h2>
+                                </div>
+                                <div class="item item-image">
+                                    <img src="{{ object.Poster }}" style="max-height: 180px;">
+                                </div>
                             </div>
-                            <div class="item item-image">
-                                <img src="{{ object.Poster }}" style="max-height: 180px;">
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
-            </div>
+            </ion-scroll>
         </div>
     </ion-content>
 </ion-view>
