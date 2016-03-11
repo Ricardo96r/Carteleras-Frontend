@@ -3,14 +3,23 @@ angular.module('SimpleRESTIonic.controllers', [])
         var vm = this;
 
         function getPelicula() {
-            PeliculasModel.fetch($stateParams.id)
+            PeliculasModel.pelicula($stateParams.id)
                 .then(function (result) {
                     vm.pelicula = result.data;
                 });
         }
-
+		
+		function getFunciones() {
+            PeliculasModel.funciones($stateParams.id)
+                .then(function (result) {
+                    vm.funciones = result.data;
+                });
+        }
+		
         vm.getPelicula = getPelicula;
+		
         getPelicula();
+		getFunciones();
     })
 
     .controller('CineCtrl', function () {

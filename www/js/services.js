@@ -52,6 +52,30 @@ angular.module('SimpleRESTIonic.services', [])
                 }
             });
         };
+		
+		service.pelicula = function(id) {
+            return $http ({
+                method: 'GET',
+                url: getQueryUrl('SelectPelicula'),
+                params: {
+                    parameters: {
+                        ID: id
+                    }
+                }
+            });
+        };
+		
+		service.funciones = function(id) {
+            return $http ({
+                method: 'GET',
+                url: getQueryUrl('SelectFuncion'),
+                params: {
+                    parameters: {
+                        ID: id
+                    }
+                }
+            });
+        };
 
         service.fetch = function (id) {
             return $http.get(getUrlForId(id));
