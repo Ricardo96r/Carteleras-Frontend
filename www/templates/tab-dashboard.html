@@ -1,7 +1,7 @@
 <ion-view view-title="Cartelera">
-    <ion-content class="padding has-header" style="background-color: #f3f3eb;">
+    <ion-content class="padding has-header" style="background-color: #f3f3eb;" overflow-scroll="true">
         <h4 class="cartelera-genero">Nuevos estrenos</h4>
-        <ion-scroll direction="x">
+        <div class="ion-scroll-horizontal-fix">
             <div class="row">
                 <div class="col col-50" ng-repeat="nuevo in vm.estreno">
                     <a href="#/tabs/pelicula/{{nuevo.ID}}">
@@ -16,10 +16,10 @@
                     </a>
                 </div>
             </div>
-        </ion-scroll>
+        </div>
 
         <h4 class="cartelera-genero">Destacados</h4>
-        <ion-scroll direction="x">
+        <div class="ion-scroll-horizontal-fix">
             <div class="row">
                 <div class="col col-50" ng-repeat="destacado in vm.destacados">
                     <a href="#/tabs/pelicula/{{destacado.ID}}">
@@ -34,11 +34,11 @@
                     </a>
                 </div>
             </div>
-        </ion-scroll>
+        </div>
 
         <div ng-repeat="genero in vm.generos" ng-init="vm.getPorGenero(genero.Genero)">
             <h4 class="cartelera-genero">{{ genero.Genero }}</h4>
-            <ion-scroll direction="x">
+            <div class="ion-scroll-horizontal-fix">
                 <div class="row">
                     <div class="col col-50" ng-repeat="object in vm.porGenero[$index]"  >
                         <a href="#/tabs/pelicula/{{object.ID}}">
@@ -53,7 +53,7 @@
                         </a>
                     </div>
                 </div>
-            </ion-scroll>
+            </div>
         </div>
     </ion-content>
 </ion-view>
