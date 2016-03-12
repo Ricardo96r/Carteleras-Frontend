@@ -1,0 +1,44 @@
+<ion-view view-title="{{ vm.pelicula[0].Nombre }}">
+    <ion-content class="content padding has-header" style="background-color: #f3f3eb; margin-top: -10px;">
+        <div class="card">
+            <div class="item item-divider">
+               Compra
+            </div>
+            <div class="item item-avatar">
+                <img src="{{ vm.pelicula[0].Poster }}">
+                <h2>{{ vm.pelicula[0].Nombre }}</h2>
+                <p>{{ vm.funcion[0].Hora }}</p>
+            </div>
+            <div class="item item-text-wrap">
+                <div class="list" style="margin-top: -20px;">
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Nombre</span>
+                        <input type="text" placeholder="Nombre">
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Apellido</span>
+                        <input type="text" placeholder="Apellido">
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Email</span>
+                        <input type="text" placeholder="Email">
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Tarjeta</span>
+                        <input type="text" placeholder="Tarjeta de credito">
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Asientos</span>
+                        <input type="text" placeholder="Cantidad de asientos">
+                    </label>
+                    <button class="button button-block button-assertive">
+                        Comprar
+                    </button>
+                </div>
+            </div>
+            <div class="item item-divider">
+                Quedan solo {{ vm.funcion[0].Asientos }} asiento(s)
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

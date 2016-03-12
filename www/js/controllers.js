@@ -22,8 +22,27 @@ angular.module('SimpleRESTIonic.controllers', [])
 		getFunciones();
     })
 
-    .controller('CineCtrl', function () {
+    .controller('CompraCtrl', function (PeliculasModel, CompraModel, $stateParams, $rootScope) {
+        var vm = this;
 
+        function getPelicula() {
+            PeliculasModel.pelicula($stateParams.id)
+                .then(function (result) {
+                    vm.pelicula = result.data;
+                });
+        }
+
+        function getFuncion() {
+            CompraModel.funcion($stateParams.idHorario)
+                .then(function (result) {
+                    vm.funcion = result.data;
+                });
+        }
+
+        vm.getPelicula = getPelicula;
+        vm.getFuncion = getFuncion;
+        getPelicula();
+        getFuncion();
     })
 
     .controller('DashboardCtrl', function (PeliculasModel, $rootScope) {

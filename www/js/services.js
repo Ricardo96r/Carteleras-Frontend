@@ -11,6 +11,37 @@ angular.module('SimpleRESTIonic.services', [])
         };
     })
 
+    .service('CompraModel', function ($http, Backand) {
+        var service = this,
+            baseUrl = '/1/objects/',
+            objectName = 'Compra/',
+            queryUrl = '/1/query/data/';
+
+        function getUrl() {
+            return Backand.getApiUrl() + baseUrl + objectName;
+        }
+
+        function getQueryUrl(query) {
+            return Backand.getApiUrl() + queryUrl + query;
+        }
+
+        function getUrlForId(id) {
+            return getUrl() + id;
+        }
+
+        service.funcion = function(id) {
+            return $http ({
+                method: 'GET',
+                url: getQueryUrl('SelectFuncion'),
+                params: {
+                    parameters: {
+                        ID: id
+                    }
+                }
+            });
+        };
+    })
+
     .service('PeliculasModel', function ($http, Backand) {
         var service = this,
             baseUrl = '/1/objects/',
@@ -68,7 +99,7 @@ angular.module('SimpleRESTIonic.services', [])
 		service.funciones = function(id) {
             return $http ({
                 method: 'GET',
-                url: getQueryUrl('SelectFuncion'),
+                url: getQueryUrl('SelectFunciones'),
                 params: {
                     parameters: {
                         ID: id
