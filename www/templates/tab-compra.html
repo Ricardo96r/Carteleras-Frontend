@@ -15,19 +15,15 @@
                 <p>{{ vm.funcion[0].Hora }}</p>
             </div>
             <div class="item item-text-wrap">
-                <form class="create-form" role="form" ng-submit="vm.crearCompra(vm.funcion[0].ID, vm.nuevaCompra.Nombre, vm.nuevaCompra.Asientos, vm.funcion[0].Asientos)">
+                <form class="create-form" role="form" ng-submit="vm.getFuncion(); vm.crearCompra(vm.funcion[0].ID, vm.nuevaCompra.Nombre, vm.nuevaCompra.Asientos, vm.funcion[0].Asientos)">
                     <div class="list" style="margin-top: -10px;">
                         <label class="item item-input">
                             <span class="input-label">Nombre</span>
-                            <input type="text" ng-model="vm.nuevaCompra.Nombre" ng-min="3" required>
+                            <input type="text" ng-model="vm.nuevaCompra.Nombre" required>
                         </label>
-                        <label class="item item-input item-select">
-                            <div class="input-label">
-                                Asientos
-                            </div>
-                            <select ng-model="vm.nuevaCompra.Asientos" required>
-                                <option ng-repeat="cantidad in [1,2,3,4,5,6]">{{ cantidad }}</option>
-                            </select>
+                        <label class="item item-input">
+                            <span class="input-label">Asientos</span>
+                            <input type="text" ng-model="vm.nuevaCompra.Asientos" required>
                         </label>
                         <button class="button button-block button-assertive">
                             Comprar

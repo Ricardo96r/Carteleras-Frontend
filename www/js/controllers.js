@@ -64,16 +64,24 @@ angular.module('SimpleRESTIonic.controllers', [])
         }
 
         function crearCompra(idFuncion, nombre, asientos, asientosDisponibles) {
-            if (asientos <= asientosDisponibles) {
-                CompraModel.compra(idFuncion, nombre, asientos)
-                    .then(function (result) {
-                        vm.compra = result.data;
-                        getFuncion();
-                        vm.urlAction = "#/tabs/compra/recibo/" + vm.compra[0].Id;
-                        $window.location.href = vm.urlAction;
-                    });
+            if (!isNaN(asientos)) {
+                if (asientos > 0) {
+                    if (asientos <= asientosDisponibles) {
+                        CompraModel.compra(idFuncion, nombre, asientos)
+                            .then(function (result) {
+                                vm.compra = result.data;
+                                vm.getFuncion();
+                                vm.urlAction = "#/tabs/compra/recibo/" + vm.compra[0].Id;
+                                $window.location.href = vm.urlAction;
+                            });
+                    } else {
+                        vm.error = "Estas tratando de comprar " + asientos + " asiento(s) y solo hay disponibles " + asientosDisponibles + " asiento(s)";
+                    }
+                } else {
+                    vm.error = "Esta insertando un valor negativo en el campo asientos";
+                }
             } else {
-                vm.error = "Estas tratando de comprar "+asientos+" asiento(s) y solo hay disponibles "+asientosDisponibles+" asiento(s)";
+                vm.error = "Solo valores numéricos en el campo asientos";
             }
         }
 
