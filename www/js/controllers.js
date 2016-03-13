@@ -3,22 +3,29 @@ angular.module('SimpleRESTIonic.controllers', [])
 
     })
 
-    .controller('BusquedaCtrl', function () {
+    .controller('BusquedaCtrl', function (CompraModel, $window) {
+        var vm = this;
 
+        function buscarRecibo(idRecibo) {
+            vm.urlAction = "#/tabs/busqueda/recibo/" + idRecibo;
+            $window.location.href = vm.urlAction;
+        }
+
+        vm.buscarRecibo = buscarRecibo;
     })
 
     .controller('PeliculaCtrl', function (PeliculasModel, $stateParams, $rootScope) {
         var vm = this;
 
         function getPelicula() {
-            PeliculasModel.pelicula($stateParams.id)
+            PeliculasModel.pelicula($stateParams.idPelicula)
                 .then(function (result) {
                     vm.pelicula = result.data;
                 });
         }
 
         function getFunciones() {
-            PeliculasModel.funciones($stateParams.id)
+            PeliculasModel.funciones($stateParams.idPelicula)
                 .then(function (result) {
                     vm.funciones = result.data;
                 });
@@ -56,13 +63,18 @@ angular.module('SimpleRESTIonic.controllers', [])
             }
         }
 
-        function crearCompra(idFuncion, nombre, asientos) {
-            CompraModel.compra(idFuncion, nombre, asientos)
-                .then(function (result) {
-                    vm.compra = result.data;
-                    vm.urlAction = "#/tabs/pelicula/" + $stateParams.id + "/compra/" + $stateParams.idHorario + "/recibo/" + vm.compra[0].Id;
-                    $window.location.href = vm.urlAction;
-                });
+        function crearCompra(idFuncion, nombre, asientos, asientosDisponibles) {
+            if (asientos <= asientosDisponibles) {
+                CompraModel.compra(idFuncion, nombre, asientos)
+                    .then(function (result) {
+                        vm.compra = result.data;
+                        getFuncion();
+                        vm.urlAction = "#/tabs/compra/recibo/" + vm.compra[0].Id;
+                        $window.location.href = vm.urlAction;
+                    });
+            } else {
+                vm.error = "Estas tratando de comprar "+asientos+" asiento(s) y solo hay disponibles "+asientosDisponibles+" asiento(s)";
+            }
         }
 
         vm.getPelicula = getPelicula;

@@ -1,6 +1,11 @@
 <ion-view view-title="{{ vm.pelicula[0].Nombre }}">
     <ion-content class="content padding has-header" style="background-color: #f3f3eb; margin-top: -10px;">
-        <div class="card">
+        <div class="card" ng-if="vm.funcion[0].Asientos <= 0">
+            <div class="item" style="text-align: center;">
+                <h1 style="font-size:20px;"> No hay asientos disponibles</h1>
+            </div>
+        </div>
+        <div class="card" ng-if="vm.funcion[0].Asientos > 0">
             <div class="item item-divider fondo">
                 Compra
             </div>
@@ -10,7 +15,7 @@
                 <p>{{ vm.funcion[0].Hora }}</p>
             </div>
             <div class="item item-text-wrap">
-                <form class="create-form" role="form" ng-submit="vm.crearCompra(vm.funcion[0].ID, vm.nuevaCompra.Nombre, vm.nuevaCompra.Asientos)">
+                <form class="create-form" role="form" ng-submit="vm.crearCompra(vm.funcion[0].ID, vm.nuevaCompra.Nombre, vm.nuevaCompra.Asientos, vm.funcion[0].Asientos)">
                     <div class="list" style="margin-top: -10px;">
                         <label class="item item-input">
                             <span class="input-label">Nombre</span>
@@ -21,13 +26,16 @@
                                 Asientos
                             </div>
                             <select ng-model="vm.nuevaCompra.Asientos" required>
-                                <option ng-repeat="cantidad in [0,1,2,3,4,5,6]">{{ cantidad }}</option>
+                                <option ng-repeat="cantidad in [1,2,3,4,5,6]">{{ cantidad }}</option>
                             </select>
                         </label>
                         <button class="button button-block button-assertive">
                             Comprar
                         </button>
                 </form>
+            </div>
+            <div class="item item-text-wrap" ng-if="vm.error" style="margin-bottom: -10px">
+                <p>{{ vm.error }}</p>
             </div>
         </div>
         <div class="item item-divider">

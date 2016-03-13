@@ -61,7 +61,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 }
             })
             .state('tab.pelicula', {
-                url: '/pelicula/:id',
+                url: '/pelicula/:idPelicula',
                 views: {
                     'tab-dashboard': {
                         templateUrl: 'templates/tab-pelicula.html',
@@ -79,14 +79,23 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
             .state('tab.recibo', {
-                url: '/pelicula/:id/compra/:idHorario/recibo/:idCompra',
+                url: '/compra/recibo/:idCompra',
                 views: {
                     'tab-dashboard': {
                         templateUrl: 'templates/tab-recibo.html',
                         controller: 'CompraCtrl as vm',
                     }
                 },
-            });
+            })
+            .state('tab.buscarecibo', {
+            url: '/busqueda/recibo/:idCompra',
+            views: {
+                'tab-busqueda': {
+                    templateUrl: 'templates/tab-recibo.html',
+                    controller: 'CompraCtrl as vm',
+                }
+            },
+        });
 
         $urlRouterProvider.otherwise('/tabs/dashboard');
 
