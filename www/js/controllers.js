@@ -30,7 +30,7 @@ angular.module('SimpleRESTIonic.controllers', [])
         getFunciones();
     })
 
-    .controller('CompraCtrl', function (PeliculasModel, CompraModel, $stateParams, $rootScope) {
+    .controller('CompraCtrl', function (PeliculasModel, CompraModel, $stateParams, $window) {
         var vm = this;
 
         function getPelicula() {
@@ -47,10 +47,30 @@ angular.module('SimpleRESTIonic.controllers', [])
                 });
         }
 
+        function getCompra() {
+            if ($stateParams.idCompra) {
+                CompraModel.recibo($stateParams.idCompra)
+                    .then(function (result) {
+                        vm.recibo = result.data;
+                    });
+            }
+        }
+
+        function crearCompra(idFuncion, nombre, asientos) {
+            CompraModel.compra(idFuncion, nombre, asientos)
+                .then(function (result) {
+                    vm.compra = result.data;
+                    vm.urlAction = "#/tabs/pelicula/" + $stateParams.id + "/compra/" + $stateParams.idHorario + "/recibo/" + vm.compra[0].Id;
+                    $window.location.href = vm.urlAction;
+                });
+        }
+
         vm.getPelicula = getPelicula;
         vm.getFuncion = getFuncion;
+        vm.crearCompra = crearCompra;
         getPelicula();
         getFuncion();
+        getCompra();
     })
 
     .controller('DashboardCtrl', function (PeliculasModel, $rootScope) {

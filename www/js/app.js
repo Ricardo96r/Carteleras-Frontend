@@ -77,6 +77,15 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                         controller: 'CompraCtrl as vm',
                     }
                 },
+            })
+            .state('tab.recibo', {
+                url: '/pelicula/:id/compra/:idHorario/recibo/:idCompra',
+                views: {
+                    'tab-dashboard': {
+                        templateUrl: 'templates/tab-recibo.html',
+                        controller: 'CompraCtrl as vm',
+                    }
+                },
             });
 
         $urlRouterProvider.otherwise('/tabs/dashboard');

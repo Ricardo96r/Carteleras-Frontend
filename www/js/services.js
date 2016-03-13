@@ -40,6 +40,32 @@ angular.module('SimpleRESTIonic.services', [])
                 }
             });
         };
+
+        service.compra = function(idFuncion, nombre, asientos) {
+            return $http ({
+                method: 'GET',
+                url: getQueryUrl('InsertCompra'),
+                params: {
+                    parameters: {
+                        IDFuncion: idFuncion,
+                        NombreCliente: nombre,
+                        Asientos: asientos,
+                    }
+                }
+            });
+        };
+
+        service.recibo = function(idCompra) {
+            return $http ({
+                method: 'GET',
+                url: getQueryUrl('SelectCompra'),
+                params: {
+                    parameters: {
+                        ID: idCompra,
+                    }
+                }
+            });
+        };
     })
 
     .service('PeliculasModel', function ($http, Backand) {

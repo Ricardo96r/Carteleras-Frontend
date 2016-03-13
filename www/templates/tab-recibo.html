@@ -1,0 +1,41 @@
+<ion-view view-title="Recibo">
+    <ion-content class="content padding has-header" style="background-color: #f3f3eb; margin-top: -10px;">
+        <div class="card">
+            <div class="item item-divider fondo">
+                Recibo
+            </div>
+            <div class="item item-text-wrap">
+                <h1>#{{ vm.recibo[0].Id }}</h1>
+            </div>
+            <div class="item item-avatar" style="position: relative;">
+                <img src="{{ vm.pelicula[0].Poster }}">
+                <h2>{{ vm.pelicula[0].Nombre }}</h2>
+                <p>{{ vm.funcion[0].Hora }}</p>
+            </div>
+            <div class="item item-text-wrap">
+                <div class="row" style="margin: -10px;">
+                    <div class="col col-50">
+                        Nombre del cliente
+                    </div>
+                    <div class="col col-50" style="text-align: right">
+                        {{vm.recibo[0].NombreCliente}}
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap">
+                <div class="row" style="margin: -10px;">
+                    <div class="col col-50">
+                        Cantidad de asientos
+                    </div>
+                    <div class="col col-50" style="text-align: right">
+                        {{vm.recibo[0].Asiento}}
+                    </div>
+                </div>
+            </div>
+            <div class="item item-divider">
+                <h3>Compra exitosa</h3>
+            </div>
+        </div>
+        </div>
+    </ion-content>
+</ion-view>
