@@ -47,7 +47,16 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 views: {
                     'tab-cine': {
                         templateUrl: 'templates/tab-cine.html',
-                        controller: 'CineCtrl as cine'
+                        controller: 'CineCtrl as vm'
+                    },
+                }
+            })
+            .state('tab.busqueda', {
+                url: '/busqueda',
+                views: {
+                    'tab-busqueda': {
+                        templateUrl: 'templates/tab-busqueda.html',
+                        controller: 'BusquedaCtrl as vm'
                     },
                 }
             })

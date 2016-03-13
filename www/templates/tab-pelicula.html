@@ -1,15 +1,20 @@
 <ion-view view-title="{{ vm.pelicula[0].Nombre }}">
-    <ion-content class="content padding has-header">
+    <ion-content class="content padding has-header" style="background-color: #f3f3eb;">
         <div class="pelicula-fondo">
             <div class="row">
                 <div class="col col-33">
-                    <img src="{{ vm.pelicula[0].Poster }}" style="width: 100%; height:160px;">
+                    <img src="{{ vm.pelicula[0].Poster }}" style="width: 100%">
                 </div>
-                <div class="col col-50">
-                    <h4 style="color:white">Género: {{ vm.pelicula[0].Genero }}</h4>
-                    <h4 style="color:white">Censura: {{ vm.pelicula[0].Clasificacion }}</h4>
-                    <h4 style="color:white">{{ vm.pelicula[0].Duracion }} minutos</h4>
-                    <h4 style="color:white">Director: {{ vm.pelicula[0].Director }}</h4>
+                <div class="col col-66">
+                    <h3 style="color: white">
+                        </p>{{ vm.pelicula[0].Nombre }}</p>
+                        <small>
+                            <p>Género: {{ vm.pelicula[0].Genero }}</p>
+                            <p>Censura: {{ vm.pelicula[0].Clasificacion }}</p>
+                            <p>{{ vm.pelicula[0].Duracion }} minutos</p>
+                            <p>Director: {{ vm.pelicula[0].Director }}</p>
+                        </small>
+                    </h3>
                 </div>
             </div>
         </div>
@@ -24,7 +29,7 @@
                             <h1 style="font-size:20px;">{{ funcion.Cine }}</h1>
                         </div>
                         <div class="col col-33">
-                            <h1 style="font-size:20px;"> {{ funcion.Hora }}</h1>
+                            <h1 style="font-size:20px;"> {{ funcion.Hora | date : hh }}</h1>
                         </div>
                         <div class="col col-33">
                             <span class="badge badge-assertive" style="padding:15px;">{{ funcion.Asientos }}</span>

@@ -17,3 +17,14 @@
 	background-color: #ef473a;
 	margin:-10px;
 }
+
+.fondo {
+	background-color: #ef473a;
+	color:white;
+}
+
+.centrar-vertical {
+	display: table-cell;
+	vertical-align: middle;
+	width: 100%;
+}

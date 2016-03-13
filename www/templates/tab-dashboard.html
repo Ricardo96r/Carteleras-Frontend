@@ -4,7 +4,7 @@
         <div class="ion-scroll-horizontal-fix">
             <div class="row">
                 <div class="col col-50" ng-repeat="nuevo in vm.estreno">
-                    <a href="#/tabs/pelicula/{{nuevo.ID}}">
+                    <a href="#/tabs/pelicula/{{nuevo.ID}}" style="text-decoration:none;">
                         <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
                             <div class="item">
                                 <h2>{{ nuevo.Nombre }}</h2>
@@ -22,7 +22,7 @@
         <div class="ion-scroll-horizontal-fix">
             <div class="row">
                 <div class="col col-50" ng-repeat="destacado in vm.destacados">
-                    <a href="#/tabs/pelicula/{{destacado.ID}}">
+                    <a href="#/tabs/pelicula/{{destacado.ID}}" style="text-decoration:none;">
                         <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
                             <div class="item">
                                 <h2>{{ destacado.Nombre }}</h2>
@@ -36,12 +36,12 @@
             </div>
         </div>
 
-        <div ng-repeat="genero in vm.generos" ng-init="vm.getPorGenero(genero.Genero)">
+        <div ng-repeat="genero in vm.generos">
             <h4 class="cartelera-genero">{{ genero.Genero }}</h4>
             <div class="ion-scroll-horizontal-fix">
                 <div class="row">
                     <div class="col col-50" ng-repeat="object in vm.porGenero[$index]"  >
-                        <a href="#/tabs/pelicula/{{object.ID}}">
+                        <a href="#/tabs/pelicula/{{object.ID}}" style="text-decoration:none;">
                             <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
                                 <div class="item">
                                     <h2>{{ object.Nombre }}</h2>

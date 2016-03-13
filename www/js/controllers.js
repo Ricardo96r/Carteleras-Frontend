@@ -1,4 +1,12 @@
 angular.module('SimpleRESTIonic.controllers', [])
+    .controller('CineCtrl', function () {
+
+    })
+
+    .controller('BusquedaCtrl', function () {
+
+    })
+
     .controller('PeliculaCtrl', function (PeliculasModel, $stateParams, $rootScope) {
         var vm = this;
 
@@ -8,18 +16,18 @@ angular.module('SimpleRESTIonic.controllers', [])
                     vm.pelicula = result.data;
                 });
         }
-		
-		function getFunciones() {
+
+        function getFunciones() {
             PeliculasModel.funciones($stateParams.id)
                 .then(function (result) {
                     vm.funciones = result.data;
                 });
         }
-		
+
         vm.getPelicula = getPelicula;
-		
+
         getPelicula();
-		getFunciones();
+        getFunciones();
     })
 
     .controller('CompraCtrl', function (PeliculasModel, CompraModel, $stateParams, $rootScope) {
@@ -46,7 +54,8 @@ angular.module('SimpleRESTIonic.controllers', [])
     })
 
     .controller('DashboardCtrl', function (PeliculasModel, $rootScope) {
-        var vm = this;
+        var vm = this,
+            generos;
 
         function getDestacados() {
             PeliculasModel.destacados()
@@ -66,25 +75,27 @@ angular.module('SimpleRESTIonic.controllers', [])
             PeliculasModel.generos()
                 .then(function (result) {
                     vm.generos = result.data;
+                    getPorGenero(vm.generos);
                 });
         }
 
-        function getPorGenero(genero) {
-            PeliculasModel.porGenero(genero)
-                .then(function (result) {
-                    if (vm.porGenero) {
-                        vm.porGenero.push(result.data);
-                    } else {
-                        vm.porGenero = [result.data];
-                    }
-                });
+        function getPorGenero(generos) {
+            for (i = 0; i < generos.length; i++) {
+                PeliculasModel.porGenero(generos[i].Genero)
+                    .then(function (result) {
+                        if (vm.porGenero) {
+                            vm.porGenero.push(result.data);
+                        } else {
+                            vm.porGenero = [result.data];
+                        }
+                    });
+            }
         }
 
         vm.getDestacados = getDestacados;
         vm.getEstrenos = getEstrenos;
         vm.getGeneros = getGeneros;
         vm.getPorGenero = getPorGenero;
-
         getDestacados();
         getEstrenos();
         getGeneros();
