@@ -15,7 +15,7 @@
             <div class="item item-avatar" style="position: relative;">
                 <img src="{{ vm.recibo[0].Poster }}">
                 <h2>{{ vm.recibo[0].Pelicula }}</h2>
-                <p>{{ vm.recibo[0].Hora }}</p>
+                <p>{{ vm.recibo[0].Hora | date:'medium'}}</p>
             </div>
             <div class="item item-text-wrap">
                 <div class="row" style="margin: -10px;">
@@ -24,6 +24,16 @@
                     </div>
                     <div class="col col-50" style="text-align: right">
                         {{vm.recibo[0].Cine}}
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap">
+                <div class="row" style="margin: -10px;">
+                    <div class="col col-50">
+                        Sala
+                    </div>
+                    <div class="col col-50" style="text-align: right">
+                        {{vm.recibo[0].Sala}}
                     </div>
                 </div>
             </div>

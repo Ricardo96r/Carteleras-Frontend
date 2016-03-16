@@ -12,10 +12,10 @@
             <div class="item item-avatar">
                 <img src="{{ vm.pelicula[0].Poster }}">
                 <h2>{{ vm.pelicula[0].Nombre }}</h2>
-                <p>{{ vm.funcion[0].Hora }}</p>
+                <p>{{ vm.funcion[0].Dia | date: 'medium'}}</p>
             </div>
             <div class="item item-text-wrap">
-                <form class="create-form" role="form" ng-submit="vm.getFuncion(); vm.crearCompra(vm.funcion[0].ID, vm.nuevaCompra.Nombre, vm.nuevaCompra.Asientos, vm.funcion[0].Asientos)">
+                <form class="create-form" role="form" ng-submit="vm.getFuncion(); vm.crearCompra(vm.nuevaCompra.Nombre, vm.nuevaCompra.Asientos, vm.funcion[0].Asientos, vm.funcion[0].Cine, vm.funcion[0].Sala, vm.funcion[0].Dia)">
                     <div class="list" style="margin-top: -10px;">
                         <label class="item item-input">
                             <span class="input-label">Nombre</span>

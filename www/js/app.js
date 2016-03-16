@@ -70,7 +70,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
             .state('tab.compra', {
-                url: '/pelicula/:id/compra/:idHorario',
+                url: '/pelicula/:idPelicula/cine/:idCine/funcion/:funcionHora/sala/:idSala',
                 views: {
                     'tab-dashboard': {
                         templateUrl: 'templates/tab-compra.html',

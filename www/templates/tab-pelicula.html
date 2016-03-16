@@ -23,13 +23,13 @@
                 <h1 style="font-size:20px;"> No hay funciones disponibles</h1>
             </div>
             <div ng-repeat="funcion in vm.funciones">
-                <a class="item" href="#/tabs/pelicula/{{vm.pelicula[0].ID}}/compra/{{funcion.ID}}">
+                <a class="item" href="#/tabs/pelicula/{{vm.pelicula[0].ID}}/cine/{{funcion.CineID}}/funcion/{{funcion.Hora}}/sala/{{funcion.Sala}}">
                     <div class="row">
                         <div class="col col-33">
                             <h1 style="font-size:20px;">{{ funcion.Cine }}</h1>
                         </div>
                         <div class="col col-33">
-                            <h1 style="font-size:20px;"> {{ funcion.Hora | date : hh }}</h1>
+                            <h1 style="font-size:20px;"> {{ funcion.Hora | date : 'shortTime' }}</h1>
                         </div>
                         <div class="col col-33">
                             <span class="badge badge-assertive" style="padding:15px;">{{ funcion.Asientos }}</span>

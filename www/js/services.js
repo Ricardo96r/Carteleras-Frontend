@@ -29,27 +29,31 @@ angular.module('SimpleRESTIonic.services', [])
             return getUrl() + id;
         }
 
-        service.funcion = function(id) {
+        service.funcion = function(idCine, funcionHora, idSala) {
             return $http ({
                 method: 'GET',
                 url: getQueryUrl('SelectFuncion'),
                 params: {
                     parameters: {
-                        ID: id
+                        CineID: idCine,
+                        Dia: funcionHora,
+                        Sala: idSala,
                     }
                 }
             });
         };
 
-        service.compra = function(idFuncion, nombre, asientos) {
+        service.compra = function(nombreCliente, asientos, idCine, idSala, funcionHora) {
             return $http ({
                 method: 'GET',
                 url: getQueryUrl('InsertCompra'),
                 params: {
                     parameters: {
-                        IDFuncion: idFuncion,
-                        NombreCliente: nombre,
+                        NombreCliente: nombreCliente,
                         Asientos: asientos,
+                        CineID: idCine,
+                        Sala: idSala,
+                        Hora: funcionHora
                     }
                 }
             });

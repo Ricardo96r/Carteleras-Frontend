@@ -3,7 +3,7 @@ angular.module('SimpleRESTIonic.controllers', [])
 
     })
 
-    .controller('BusquedaCtrl', function (CompraModel, $window) {
+    .controller('BusquedaCtrl', function (CompraModel, $window, $ionicHistory) {
         var vm = this;
 
         function buscarRecibo(idRecibo) {
@@ -41,14 +41,14 @@ angular.module('SimpleRESTIonic.controllers', [])
         var vm = this;
 
         function getPelicula() {
-            PeliculasModel.pelicula($stateParams.id)
+            PeliculasModel.pelicula($stateParams.idPelicula)
                 .then(function (result) {
                     vm.pelicula = result.data;
                 });
         }
 
         function getFuncion() {
-            CompraModel.funcion($stateParams.idHorario)
+            CompraModel.funcion($stateParams.idCine, $stateParams.funcionHora, $stateParams.idSala)
                 .then(function (result) {
                     vm.funcion = result.data;
                 });
@@ -63,11 +63,11 @@ angular.module('SimpleRESTIonic.controllers', [])
             }
         }
 
-        function crearCompra(idFuncion, nombre, asientos, asientosDisponibles) {
+        function crearCompra(nombreCliente, asientos, asientosDisponibles, idCine, idSala, funcionHora) {
             if (!isNaN(asientos)) {
                 if (asientos > 0) {
                     if (asientos <= asientosDisponibles) {
-                        CompraModel.compra(idFuncion, nombre, asientos)
+                        CompraModel.compra(nombreCliente, asientos, idCine, idSala, funcionHora)
                             .then(function (result) {
                                 vm.compra = result.data;
                                 vm.getFuncion();
