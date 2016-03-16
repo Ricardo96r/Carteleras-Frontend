@@ -138,6 +138,18 @@ angular.module('SimpleRESTIonic.services', [])
             });
         };
 
+        service.buscar = function(nombrePelicula) {
+            return $http ({
+                method: 'GET',
+                url: getQueryUrl('BuscarPelicula'),
+                params: {
+                    parameters: {
+                        nombrePelicula: nombrePelicula
+                    }
+                }
+            });
+        };
+
         service.fetch = function (id) {
             return $http.get(getUrlForId(id));
         };

@@ -3,19 +3,46 @@ angular.module('SimpleRESTIonic.controllers', [])
 
     })
 
-    .controller('BusquedaCtrl', function (CompraModel, $window, $ionicHistory) {
+    .controller('BusquedaCtrl', function (CompraModel, PeliculasModel, $window, $stateParams) {
         var vm = this;
 
         function buscarRecibo(idRecibo) {
-            vm.urlAction = "#/tabs/busqueda/recibo/" + idRecibo;
+            vm.urlAction = "#/tabs/recibo/" + idRecibo + "/busqueda";
             $window.location.href = vm.urlAction;
         }
 
+        function buscarPelicula(nombrePelicula) {
+            vm.urlAction = "#/tabs/busqueda/pelicula/" + nombrePelicula;
+            $window.location.href = vm.urlAction;
+        }
+
+        function getBuscarPeliculas() {
+            if ($stateParams.nombrePelicula) {
+                PeliculasModel.buscar($stateParams.nombrePelicula)
+                    .then(function (result) {
+                        vm.peliculas = result.data;
+                    });
+                vm.busqueda = $stateParams.nombrePelicula;
+            }
+        }
+
+        vm.getBuscarPeliculas = getBuscarPeliculas;
+        vm.buscarPelicula = buscarPelicula;
         vm.buscarRecibo = buscarRecibo;
+        getBuscarPeliculas();
+
     })
 
-    .controller('PeliculaCtrl', function (PeliculasModel, $stateParams, $rootScope) {
+    .controller('PeliculaCtrl', function (PeliculasModel, $stateParams) {
         var vm = this;
+
+        function esBusqueda() {
+            if ($stateParams.busqueda) {
+                vm.busqueda = "/busqueda";
+            } else {
+                vm.busqueda = "";
+            }
+        }
 
         function getPelicula() {
             PeliculasModel.pelicula($stateParams.idPelicula)
@@ -32,12 +59,13 @@ angular.module('SimpleRESTIonic.controllers', [])
         }
 
         vm.getPelicula = getPelicula;
-
+        vm.esBusqueda = esBusqueda;
+        esBusqueda();
         getPelicula();
         getFunciones();
     })
 
-    .controller('CompraCtrl', function (PeliculasModel, CompraModel, $stateParams, $window) {
+    .controller('CompraCtrl', function (PeliculasModel, CompraModel, $stateParams, $window, $ionicHistory) {
         var vm = this;
 
         function getPelicula() {
@@ -59,6 +87,18 @@ angular.module('SimpleRESTIonic.controllers', [])
                 CompraModel.recibo($stateParams.idCompra)
                     .then(function (result) {
                         vm.recibo = result.data;
+                        if ($stateParams.busquedaRecibo) {
+                            vm.busqueda = true;
+                        } else {
+                            vm.busqueda = false;
+                        }
+                        if ($stateParams.busqueda) {
+                            vm.contenidoBoton = "Regresar a busqueda";
+                            vm.regresarUrl = "#/tabs/busqueda";
+                        } else {
+                            vm.contenidoBoton = "Regresar a carteleras";
+                            vm.regresarUrl = "#/tabs/dashboard";
+                        }
                     });
             }
         }
@@ -72,6 +112,13 @@ angular.module('SimpleRESTIonic.controllers', [])
                                 vm.compra = result.data;
                                 vm.getFuncion();
                                 vm.urlAction = "#/tabs/compra/recibo/" + vm.compra[0].Id;
+                                if ($stateParams.busqueda) {
+                                    vm.urlAction += "/busqueda"
+                                }
+                                $ionicHistory.nextViewOptions({
+                                    disableAnimate: true,
+                                    disableBack: true
+                                });
                                 $window.location.href = vm.urlAction;
                             });
                     } else {
@@ -93,9 +140,8 @@ angular.module('SimpleRESTIonic.controllers', [])
         getCompra();
     })
 
-    .controller('DashboardCtrl', function (PeliculasModel, $rootScope) {
-        var vm = this,
-            generos;
+    .controller('DashboardCtrl', function (PeliculasModel) {
+        var vm = this;
 
         function getDestacados() {
             PeliculasModel.destacados()

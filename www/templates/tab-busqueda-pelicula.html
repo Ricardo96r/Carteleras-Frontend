@@ -1,0 +1,16 @@
+<ion-view view-title="{{vm.busqueda}}">
+    <ion-content class="padding has-header" style="background-color: #f3f3eb;">
+        <div class="item" ng-if="vm.peliculas.length === 0" style="text-align: center;">
+            <h1 style="font-size:20px;">No se ha encontrado la pelicula</h1>
+        </div>
+        <div class="list" ng-repeat="pelicula in vm.peliculas">
+            <a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.ID}}/busqueda">
+                <img src="{{pelicula.Poster}}" style="width: 100%">
+                <h2>{{ pelicula.Nombre }}</h2>
+                <p>Censura: {{ pelicula.Clasificacion }}</p>
+                <p>{{ pelicula.Duracion }} minutos</p>
+                <p>Director: {{ pelicula.Director }}</p>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

@@ -27,7 +27,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
         BackandProvider.setAnonymousToken('b41abe65-ce24-46af-9794-97e9d8f955a5'); // token is for anonymous login. see http://docs.backand.com/en/latest/apidocs/security/index.html#anonymous-access
 
         $stateProvider
-            // setup an abstract state for the tabs directive
+        // setup an abstract state for the tabs directive
             .state('tab', {
                 url: '/tabs',
                 abstract: true,
@@ -48,15 +48,6 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                     'tab-cine': {
                         templateUrl: 'templates/tab-cine.html',
                         controller: 'CineCtrl as vm'
-                    },
-                }
-            })
-            .state('tab.busqueda', {
-                url: '/busqueda',
-                views: {
-                    'tab-busqueda': {
-                        templateUrl: 'templates/tab-busqueda.html',
-                        controller: 'BusquedaCtrl as vm'
                     },
                 }
             })
@@ -87,15 +78,63 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                     }
                 },
             })
-            .state('tab.buscarecibo', {
-            url: '/busqueda/recibo/:idCompra',
-            views: {
-                'tab-busqueda': {
-                    templateUrl: 'templates/tab-recibo.html',
-                    controller: 'CompraCtrl as vm',
+            .state('tab.busqueda', {
+                url: '/busqueda',
+                views: {
+                    'tab-busqueda': {
+                        templateUrl: 'templates/tab-busqueda.html',
+                        controller: 'BusquedaCtrl as vm'
+                    },
                 }
-            },
-        });
+            })
+            .state('tab.buscarecibo', {
+                url: '/recibo/:idCompra/:busquedaRecibo',
+                views: {
+                    'tab-busqueda': {
+                        templateUrl: 'templates/tab-recibo.html',
+                        controller: 'CompraCtrl as vm',
+                    }
+                },
+            })
+            /*
+                Buscar Pelicula.
+             */
+            .state('tab.buscarpelicula', {
+                url: '/busqueda/pelicula/:nombrePelicula',
+                views: {
+                    'tab-busqueda': {
+                        templateUrl: 'templates/tab-busqueda-pelicula.html',
+                        controller: 'BusquedaCtrl as vm',
+                    }
+                },
+            })
+            .state('tab.bpelicula', {
+                url: '/pelicula/:idPelicula/:busqueda',
+                views: {
+                    'tab-busqueda': {
+                        templateUrl: 'templates/tab-pelicula.html',
+                        controller: 'PeliculaCtrl as vm',
+                    }
+                },
+            })
+            .state('tab.bcompra', {
+                url: '/pelicula/:idPelicula/cine/:idCine/funcion/:funcionHora/sala/:idSala/:busqueda',
+                views: {
+                    'tab-busqueda': {
+                        templateUrl: 'templates/tab-compra.html',
+                        controller: 'CompraCtrl as vm',
+                    }
+                },
+            })
+            .state('tab.brecibo', {
+                url: '/compra/recibo/:idCompra/:busqueda',
+                views: {
+                    'tab-busqueda': {
+                        templateUrl: 'templates/tab-recibo.html',
+                        controller: 'CompraCtrl as vm',
+                    }
+                },
+            });
 
         $urlRouterProvider.otherwise('/tabs/dashboard');
 
