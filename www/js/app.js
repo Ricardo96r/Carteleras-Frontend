@@ -46,7 +46,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 }
             })
             .state('tab.pelicula', {
-                url: '/pelicula/:idPelicula',
+                url: '/pelicula/:idPelicula/:nombrePelicula',
                 views: {
                     'tab-dashboard': {
                         templateUrl: 'templates/tab-pelicula.html',
@@ -55,7 +55,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
             .state('tab.compra', {
-                url: '/pelicula/:idPelicula/cine/:idCine/funcion/:funcionHora/sala/:idSala',
+                url: '/pelicula/:idPelicula/:nombrePelicula/cine/:idCine/funcion/:funcionHora/sala/:idSala',
                 views: {
                     'tab-dashboard': {
                         templateUrl: 'templates/tab-compra.html',
@@ -94,7 +94,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 }
             })
             .state('tab.cpelicula', {
-                url: '/pelicula/:idPelicula/cine/:cine',
+                url: '/pelicula/:idPelicula/:nombrePelicula/cine/:cine',
                 views: {
                     'tab-cine': {
                         templateUrl: 'templates/tab-pelicula.html',
@@ -103,7 +103,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
             .state('tab.ccompra', {
-                url: '/pelicula/:idPelicula/cine/:idCine/funcion/:funcionHora/sala/:idSala/cine/:cine',
+                url: '/pelicula/:idPelicula/:nombrePelicula/cine/:idCine/funcion/:funcionHora/sala/:idSala/cine/:cine',
                 views: {
                     'tab-cine': {
                         templateUrl: 'templates/tab-compra.html',
@@ -155,7 +155,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
             .state('tab.bpelicula', {
-                url: '/pelicula/:idPelicula/:busqueda',
+                url: '/pelicula/:idPelicula/:nombrePelicula/:busqueda',
                 views: {
                     'tab-busqueda': {
                         templateUrl: 'templates/tab-pelicula.html',
@@ -164,7 +164,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
             .state('tab.bcompra', {
-                url: '/pelicula/:idPelicula/cine/:idCine/funcion/:funcionHora/sala/:idSala/:busqueda',
+                url: '/pelicula/:idPelicula/:nombrePelicula/cine/:idCine/funcion/:funcionHora/sala/:idSala/:busqueda',
                 views: {
                     'tab-busqueda': {
                         templateUrl: 'templates/tab-compra.html',

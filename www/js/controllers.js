@@ -75,6 +75,7 @@ angular.module('SimpleRESTIonic.controllers', [])
                 .then(function (result) {
                     vm.pelicula = result.data;
                 });
+            vm.titulo = $stateParams.nombrePelicula;
         }
 
         function getFunciones() {
@@ -99,6 +100,7 @@ angular.module('SimpleRESTIonic.controllers', [])
                 .then(function (result) {
                     vm.pelicula = result.data;
                 });
+            vm.titulo = $stateParams.nombrePelicula;
         }
 
         function getFuncion() {
