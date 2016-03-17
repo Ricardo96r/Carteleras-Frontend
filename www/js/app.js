@@ -33,6 +33,9 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 abstract: true,
                 templateUrl: 'templates/tabs.html'
             })
+            /*
+             Dashboard
+             */
             .state('tab.dashboard', {
                 url: '/dashboard',
                 views: {
@@ -40,15 +43,6 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                         templateUrl: 'templates/tab-dashboard.html',
                         controller: 'DashboardCtrl as vm'
                     }
-                }
-            })
-            .state('tab.cine', {
-                url: '/cine',
-                views: {
-                    'tab-cine': {
-                        templateUrl: 'templates/tab-cine.html',
-                        controller: 'CineCtrl as vm'
-                    },
                 }
             })
             .state('tab.pelicula', {
@@ -78,6 +72,58 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                     }
                 },
             })
+            .state('tab.cine', {
+                url: '/cine',
+                views: {
+                    'tab-cine': {
+                        templateUrl: 'templates/tab-cine.html',
+                        controller: 'CineCtrl as vm'
+                    },
+                }
+            })
+            /*
+             Tab cine
+             */
+            .state('tab.cinepeliculas', {
+                url: '/cine/:idCine/:nombreCine',
+                views: {
+                    'tab-cine': {
+                        templateUrl: 'templates/tab-cine-peliculas.html',
+                        controller: 'CineCtrl as vm'
+                    },
+                }
+            })
+            .state('tab.cpelicula', {
+                url: '/pelicula/:idPelicula/:cine',
+                views: {
+                    'tab-cine': {
+                        templateUrl: 'templates/tab-pelicula.html',
+                        controller: 'PeliculaCtrl as vm',
+                    }
+                },
+            })
+            .state('tab.ccompra', {
+                url: '/pelicula/:idPelicula/cine/:idCine/funcion/:funcionHora/sala/:idSala/:cine',
+                views: {
+                    'tab-cine': {
+                        templateUrl: 'templates/tab-compra.html',
+                        controller: 'CompraCtrl as vm',
+                    }
+                },
+            })
+            .state('tab.crecibo', {
+                url: '/compra/recibo/:idCompra/:cine',
+                views: {
+                    'tab-cine': {
+                        templateUrl: 'templates/tab-recibo.html',
+                        controller: 'CompraCtrl as vm',
+                    }
+                },
+            })
+
+            /*
+             Tab Busqueda
+             */
             .state('tab.busqueda', {
                 url: '/busqueda',
                 views: {
@@ -97,7 +143,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
             /*
-                Buscar Pelicula.
+             Buscar Pelicula.
              */
             .state('tab.buscarpelicula', {
                 url: '/busqueda/pelicula/:nombrePelicula',

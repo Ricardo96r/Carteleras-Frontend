@@ -1,0 +1,18 @@
+<ion-view view-title="{{ vm.cine }}">
+    <ion-content class="content padding has-header" style="background-color: #f3f3eb;">
+        <div class="card" ng-if="vm.peliculas.length === 0">
+            <div class="item" style="text-align: center;">
+                <h1 style="font-size:20px;"> No hay películas disponibles</h1>
+            </div>
+        </div>
+        <div class="list" ng-repeat="pelicula in vm.peliculas">
+            <a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.ID}}/cine">
+                <img src="{{pelicula.Poster}}">
+                <h2>{{ pelicula.Nombre}}</h2>
+                <p>Género: {{ pelicula.Genero }}</p>
+                <p>Censura: {{ pelicula.Clasificacion }}</p>
+                <p>{{ pelicula.Duracion }} minutos</p>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,6 +1,30 @@
 angular.module('SimpleRESTIonic.controllers', [])
-    .controller('CineCtrl', function () {
+    .controller('CineCtrl', function (PeliculasModel, $stateParams) {
+        var vm = this;
 
+        function getCines() {
+            PeliculasModel.cines()
+                .then(function (result) {
+                    vm.cines = result.data;
+                });
+        }
+
+        function getFuncionesPorCine() {
+            PeliculasModel.peliculasPorCine($stateParams.idCine)
+                .then(function (result) {
+                    vm.peliculas = result.data;
+                });
+            vm.cine = $stateParams.nombreCine;
+        }
+
+        vm.getCines = getCines;
+        vm.getFuncionesPorCine = getFuncionesPorCine;
+
+        if($stateParams.idCine) {
+            getFuncionesPorCine();
+        } else {
+            getCines();
+        }
     })
 
     .controller('BusquedaCtrl', function (CompraModel, PeliculasModel, $window, $stateParams) {
@@ -36,9 +60,11 @@ angular.module('SimpleRESTIonic.controllers', [])
     .controller('PeliculaCtrl', function (PeliculasModel, $stateParams) {
         var vm = this;
 
-        function esBusqueda() {
+        function esTab() {
             if ($stateParams.busqueda) {
                 vm.busqueda = "/busqueda";
+            } else if($stateParams.cine){
+                vm.busqueda = "/cine";
             } else {
                 vm.busqueda = "";
             }
@@ -59,8 +85,8 @@ angular.module('SimpleRESTIonic.controllers', [])
         }
 
         vm.getPelicula = getPelicula;
-        vm.esBusqueda = esBusqueda;
-        esBusqueda();
+        vm.esTab = esTab;
+        esTab();
         getPelicula();
         getFunciones();
     })
@@ -95,6 +121,9 @@ angular.module('SimpleRESTIonic.controllers', [])
                         if ($stateParams.busqueda) {
                             vm.contenidoBoton = "Regresar a busqueda";
                             vm.regresarUrl = "#/tabs/busqueda";
+                        } else if($stateParams.cine) {
+                            vm.contenidoBoton = "Regresar a cines";
+                            vm.regresarUrl = "#/tabs/cine";
                         } else {
                             vm.contenidoBoton = "Regresar a carteleras";
                             vm.regresarUrl = "#/tabs/dashboard";
@@ -114,6 +143,8 @@ angular.module('SimpleRESTIonic.controllers', [])
                                 vm.urlAction = "#/tabs/compra/recibo/" + vm.compra[0].Id;
                                 if ($stateParams.busqueda) {
                                     vm.urlAction += "/busqueda"
+                                } else if($stateParams.cine) {
+                                    vm.urlAction += "/cine"
                                 }
                                 $ionicHistory.nextViewOptions({
                                     disableAnimate: true,

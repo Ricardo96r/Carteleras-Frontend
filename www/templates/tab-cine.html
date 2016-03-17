@@ -1,5 +1,11 @@
 <ion-view view-title="Cines">
     <ion-content class="content padding has-header">
-        <h1>Cines</h1>
+        <ul class="list" style="margin:-10px;">
+            <a ng-repeat="cine in vm.cines" href="#/tabs/cine/{{cine.ID}}/{{cine.Nombre}}" style="text-decoration: none;">
+                <li class="item">
+                    {{ cine.Nombre }}
+                </li>
+            </a>
+        </ul>
     </ion-content>
 </ion-view>

@@ -102,6 +102,22 @@ angular.module('SimpleRESTIonic.services', [])
             return $http.get(getQueryUrl('SelectNombresGeneros'));
         };
 
+        service.cines = function () {
+            return $http.get(getQueryUrl('SelectCines'));
+        };
+
+        service.peliculasPorCine = function(idCine) {
+            return $http ({
+                method: 'GET',
+                url: getQueryUrl('SelectCine'),
+                params: {
+                    parameters: {
+                        CineID: idCine
+                    }
+                }
+            });
+        };
+
         service.porGenero = function(genero) {
             return $http ({
                 method: 'GET',
