@@ -222,13 +222,14 @@ angular.module('SimpleRESTIonic.controllers', [])
         }
 
         function getPorGenero(generos) {
+            vm.porGenero = []
             for (i = 0; i < generos.length; i++) {
                 PeliculasModel.porGenero(generos[i].Genero)
                     .then(function (result) {
-                        if (vm.porGenero) {
-                            vm.porGenero.push(result.data);
-                        } else {
-                            vm.porGenero = [result.data];
+                        for (j = 0; j < generos.length; j++) {
+                            if (result.data[0].Genero == generos[j].Genero) {
+                                vm.porGenero[j] = result.data;
+                            }
                         }
                         $ionicLoading.hide();
                     });
