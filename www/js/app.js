@@ -94,7 +94,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 }
             })
             .state('tab.cpelicula', {
-                url: '/pelicula/:idPelicula/:cine',
+                url: '/pelicula/:idPelicula/cine/:cine',
                 views: {
                     'tab-cine': {
                         templateUrl: 'templates/tab-pelicula.html',
@@ -103,7 +103,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
             .state('tab.ccompra', {
-                url: '/pelicula/:idPelicula/cine/:idCine/funcion/:funcionHora/sala/:idSala/:cine',
+                url: '/pelicula/:idPelicula/cine/:idCine/funcion/:funcionHora/sala/:idSala/cine/:cine',
                 views: {
                     'tab-cine': {
                         templateUrl: 'templates/tab-compra.html',
@@ -112,7 +112,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
             .state('tab.crecibo', {
-                url: '/compra/recibo/:idCompra/:cine',
+                url: '/compra/recibo/:idCompra/cine/:cine',
                 views: {
                     'tab-cine': {
                         templateUrl: 'templates/tab-recibo.html',

@@ -64,7 +64,7 @@ angular.module('SimpleRESTIonic.controllers', [])
             if ($stateParams.busqueda) {
                 vm.busqueda = "/busqueda";
             } else if($stateParams.cine){
-                vm.busqueda = "/cine";
+                vm.busqueda = "/cine/"+$stateParams.cine;
             } else {
                 vm.busqueda = "";
             }
@@ -142,9 +142,9 @@ angular.module('SimpleRESTIonic.controllers', [])
                                 vm.getFuncion();
                                 vm.urlAction = "#/tabs/compra/recibo/" + vm.compra[0].Id;
                                 if ($stateParams.busqueda) {
-                                    vm.urlAction += "/busqueda"
+                                    vm.urlAction += "/busqueda";
                                 } else if($stateParams.cine) {
-                                    vm.urlAction += "/cine"
+                                    vm.urlAction += "/cine/"+$stateParams.cine;
                                 }
                                 $ionicHistory.nextViewOptions({
                                     disableAnimate: true,
