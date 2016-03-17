@@ -1,11 +1,17 @@
 angular.module('SimpleRESTIonic.controllers', [])
-    .controller('CineCtrl', function (PeliculasModel, $stateParams) {
+    .constant('$ionicLoadingConfig', {
+        content: '<ion-spinner></ion-spinner><br> Cargando',
+        hideOnStateChange: true,
+    })
+
+    .controller('CineCtrl', function (PeliculasModel, $stateParams, $ionicLoading) {
         var vm = this;
 
         function getCines() {
             PeliculasModel.cines()
                 .then(function (result) {
                     vm.cines = result.data;
+                    $ionicLoading.hide();
                 });
         }
 
@@ -13,6 +19,7 @@ angular.module('SimpleRESTIonic.controllers', [])
             PeliculasModel.peliculasPorCine($stateParams.idCine)
                 .then(function (result) {
                     vm.peliculas = result.data;
+                    $ionicLoading.hide();
                 });
             vm.cine = $stateParams.nombreCine;
         }
@@ -20,14 +27,15 @@ angular.module('SimpleRESTIonic.controllers', [])
         vm.getCines = getCines;
         vm.getFuncionesPorCine = getFuncionesPorCine;
 
-        if($stateParams.idCine) {
+        $ionicLoading.show();
+        if ($stateParams.idCine) {
             getFuncionesPorCine();
         } else {
             getCines();
         }
     })
 
-    .controller('BusquedaCtrl', function (CompraModel, PeliculasModel, $window, $stateParams) {
+    .controller('BusquedaCtrl', function (CompraModel, PeliculasModel, $window, $stateParams, $ionicLoading) {
         var vm = this;
 
         function buscarRecibo(idRecibo) {
@@ -42,9 +50,11 @@ angular.module('SimpleRESTIonic.controllers', [])
 
         function getBuscarPeliculas() {
             if ($stateParams.nombrePelicula) {
+                $ionicLoading.show();
                 PeliculasModel.buscar($stateParams.nombrePelicula)
                     .then(function (result) {
                         vm.peliculas = result.data;
+                        $ionicLoading.hide();
                     });
                 vm.busqueda = $stateParams.nombrePelicula;
             }
@@ -57,14 +67,18 @@ angular.module('SimpleRESTIonic.controllers', [])
 
     })
 
-    .controller('PeliculaCtrl', function (PeliculasModel, $stateParams) {
+    .controller('PeliculaCtrl', function (PeliculasModel, $stateParams, $ionicLoading) {
         var vm = this;
+
+        function cargando() {
+            $ionicLoading.show();
+        }
 
         function esTab() {
             if ($stateParams.busqueda) {
                 vm.busqueda = "/busqueda";
-            } else if($stateParams.cine){
-                vm.busqueda = "/cine/"+$stateParams.cine;
+            } else if ($stateParams.cine) {
+                vm.busqueda = "/cine/" + $stateParams.cine;
             } else {
                 vm.busqueda = "";
             }
@@ -82,20 +96,23 @@ angular.module('SimpleRESTIonic.controllers', [])
             PeliculasModel.funciones($stateParams.idPelicula)
                 .then(function (result) {
                     vm.funciones = result.data;
+                    $ionicLoading.hide();
                 });
         }
 
         vm.getPelicula = getPelicula;
         vm.esTab = esTab;
+        cargando();
         esTab();
         getPelicula();
         getFunciones();
     })
 
-    .controller('CompraCtrl', function (PeliculasModel, CompraModel, $stateParams, $window, $ionicHistory) {
+    .controller('CompraCtrl', function (PeliculasModel, CompraModel, $stateParams, $window, $ionicHistory, $ionicLoading) {
         var vm = this;
 
         function getPelicula() {
+            $ionicLoading.show();
             PeliculasModel.pelicula($stateParams.idPelicula)
                 .then(function (result) {
                     vm.pelicula = result.data;
@@ -107,11 +124,13 @@ angular.module('SimpleRESTIonic.controllers', [])
             CompraModel.funcion($stateParams.idCine, $stateParams.funcionHora, $stateParams.idSala)
                 .then(function (result) {
                     vm.funcion = result.data;
+                    $ionicLoading.hide();
                 });
         }
 
         function getCompra() {
             if ($stateParams.idCompra) {
+                $ionicLoading.show();
                 CompraModel.recibo($stateParams.idCompra)
                     .then(function (result) {
                         vm.recibo = result.data;
@@ -123,13 +142,14 @@ angular.module('SimpleRESTIonic.controllers', [])
                         if ($stateParams.busqueda) {
                             vm.contenidoBoton = "Regresar a busqueda";
                             vm.regresarUrl = "#/tabs/busqueda";
-                        } else if($stateParams.cine) {
+                        } else if ($stateParams.cine) {
                             vm.contenidoBoton = "Regresar a cines";
                             vm.regresarUrl = "#/tabs/cine";
                         } else {
                             vm.contenidoBoton = "Regresar a carteleras";
                             vm.regresarUrl = "#/tabs/dashboard";
                         }
+                        $ionicLoading.hide();
                     });
             }
         }
@@ -138,6 +158,7 @@ angular.module('SimpleRESTIonic.controllers', [])
             if (!isNaN(asientos)) {
                 if (asientos > 0) {
                     if (asientos <= asientosDisponibles) {
+                        $ionicLoading.show();
                         CompraModel.compra(nombreCliente, asientos, idCine, idSala, funcionHora)
                             .then(function (result) {
                                 vm.compra = result.data;
@@ -145,13 +166,14 @@ angular.module('SimpleRESTIonic.controllers', [])
                                 vm.urlAction = "#/tabs/compra/recibo/" + vm.compra[0].Id;
                                 if ($stateParams.busqueda) {
                                     vm.urlAction += "/busqueda";
-                                } else if($stateParams.cine) {
-                                    vm.urlAction += "/cine/"+$stateParams.cine;
+                                } else if ($stateParams.cine) {
+                                    vm.urlAction += "/cine/" + $stateParams.cine;
                                 }
                                 $ionicHistory.nextViewOptions({
                                     disableAnimate: true,
                                     disableBack: true
                                 });
+                                $ionicLoading.hide();
                                 $window.location.href = vm.urlAction;
                             });
                     } else {
@@ -173,10 +195,11 @@ angular.module('SimpleRESTIonic.controllers', [])
         getCompra();
     })
 
-    .controller('DashboardCtrl', function (PeliculasModel) {
+    .controller('DashboardCtrl', function (PeliculasModel, $ionicLoading) {
         var vm = this;
 
         function getDestacados() {
+            $ionicLoading.show();
             PeliculasModel.destacados()
                 .then(function (result) {
                     vm.destacados = result.data;
@@ -207,6 +230,7 @@ angular.module('SimpleRESTIonic.controllers', [])
                         } else {
                             vm.porGenero = [result.data];
                         }
+                        $ionicLoading.hide();
                     });
             }
         }
