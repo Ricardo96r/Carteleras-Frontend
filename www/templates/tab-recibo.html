@@ -5,13 +5,6 @@
                 <h1 style="font-size:20px;"> El recibo que ha buscado no existe</h1>
             </div>
         </div>
-        <div ng-if="!vm.busqueda">
-            <a href="{{vm.regresarUrl}}" style="text-decoration: none;">
-                <button class="button button-full button-assertive">
-                    {{ vm.contenidoBoton }}
-                </button>
-            </a>
-        </div>
         <div class="card" ng-if="vm.recibo.length !== 0">
             <div class="item item-divider fondo">
                 Recibo
@@ -64,10 +57,26 @@
                     </div>
                 </div>
             </div>
+            <div class="item item-text-wrap">
+                <div class="row" style="margin: -10px;">
+                    <div class="col col-50">
+                        Fecha de compra
+                    </div>
+                    <div class="col col-50" style="text-align: right">
+                        {{ vm.recibo[0].Fecha | date: 'medium' : '-0900'}}
+                    </div>
+                </div>
+            </div>
             <div class="item item-divider">
                 <h3>Compra exitosa</h3>
             </div>
         </div>
+        <div ng-if="!vm.busqueda">
+            <a href="{{vm.regresarUrl}}" style="text-decoration: none;">
+                <button class="button button-full button-assertive">
+                    {{ vm.contenidoBoton }}
+                </button>
+            </a>
         </div>
     </ion-content>
 </ion-view>
