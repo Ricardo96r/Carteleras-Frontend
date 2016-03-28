@@ -64,7 +64,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
             .state('tab.recibo', {
-                url: '/compra/recibo/:idCompra',
+                url: '/compra/recibo/:idCompra/:comprado',
                 views: {
                     'tab-dashboard': {
                         templateUrl: 'templates/tab-recibo.html',
@@ -112,7 +112,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
             .state('tab.crecibo', {
-                url: '/compra/recibo/:idCompra/cine/:cine',
+                url: '/compra/recibo/:idCompra/cine/:cine/:comprado',
                 views: {
                     'tab-cine': {
                         templateUrl: 'templates/tab-recibo.html',
@@ -173,7 +173,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
             .state('tab.brecibo', {
-                url: '/compra/recibo/:idCompra/:busqueda',
+                url: '/compra/recibo/:idCompra/:busqueda/:comprado',
                 views: {
                     'tab-busqueda': {
                         templateUrl: 'templates/tab-recibo.html',

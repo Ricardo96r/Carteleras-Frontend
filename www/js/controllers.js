@@ -149,41 +149,50 @@ angular.module('SimpleRESTIonic.controllers', [])
                             vm.contenidoBoton = "Regresar a carteleras";
                             vm.regresarUrl = "#/tabs/dashboard";
                         }
+                        if($stateParams.comprado) {
+                            $ionicHistory.clearHistory();
+                            $ionicHistory.clearCache();
+                        }
                         $ionicLoading.hide();
                     });
             }
         }
 
         function crearCompra(nombreCliente, asientos, asientosDisponibles, idCine, idSala, funcionHora) {
-            if (!isNaN(asientos)) {
-                if (asientos > 0) {
-                    if (asientos <= asientosDisponibles) {
-                        $ionicLoading.show();
-                        CompraModel.compra(nombreCliente, asientos, idCine, idSala, funcionHora)
-                            .then(function (result) {
-                                vm.compra = result.data;
-                                vm.getFuncion();
-                                vm.urlAction = "#/tabs/compra/recibo/" + vm.compra[0].Id;
-                                if ($stateParams.busqueda) {
-                                    vm.urlAction += "/busqueda";
-                                } else if ($stateParams.cine) {
-                                    vm.urlAction += "/cine/" + $stateParams.cine;
-                                }
-                                $ionicHistory.nextViewOptions({
-                                    disableAnimate: true,
-                                    disableBack: true
+            if(nombreCliente) {
+                if (!isNaN(asientos)) {
+                    if (asientos > 0) {
+                        if (asientos <= asientosDisponibles) {
+                            $ionicLoading.show();
+                            CompraModel.compra(nombreCliente, asientos, idCine, idSala, funcionHora)
+                                .then(function (result) {
+                                    vm.compra = result.data;
+                                    vm.getFuncion();
+                                    vm.urlAction = "#/tabs/compra/recibo/" + vm.compra[0].Id;
+                                    if ($stateParams.busqueda) {
+                                        vm.urlAction += "/busqueda";
+                                    } else if ($stateParams.cine) {
+                                        vm.urlAction += "/cine/" + $stateParams.cine;
+                                    }
+                                    vm.urlAction += "/comprado";
+                                    $ionicHistory.nextViewOptions({
+                                        disableAnimate: true,
+                                        disableBack: true
+                                    });
+                                    $ionicLoading.hide();
+                                    $window.location.href = vm.urlAction;
                                 });
-                                $ionicLoading.hide();
-                                $window.location.href = vm.urlAction;
-                            });
+                        } else {
+                            vm.error = "Estas tratando de comprar " + asientos + " asiento(s) y solo hay disponibles " + asientosDisponibles + " asiento(s)";
+                        }
                     } else {
-                        vm.error = "Estas tratando de comprar " + asientos + " asiento(s) y solo hay disponibles " + asientosDisponibles + " asiento(s)";
+                        vm.error = "Esta insertando un valor negativo o cero en el campo asientos";
                     }
                 } else {
-                    vm.error = "Esta insertando un valor negativo en el campo asientos";
+                    vm.error = "Solo valores numéricos en el campo asientos";
                 }
             } else {
-                vm.error = "Solo valores numéricos en el campo asientos";
+                vm.error = "Inserte un nombre válido.";
             }
         }
 
