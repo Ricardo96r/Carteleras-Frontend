@@ -211,14 +211,14 @@ angular.module('SimpleRESTIonic.controllers', [])
             $ionicLoading.show();
             PeliculasModel.destacados()
                 .then(function (result) {
-                    vm.destacados = result.data;
+                    vm.destacados = result.data.data;
                 });
         }
 
         function getEstrenos() {
             PeliculasModel.nuevos()
                 .then(function (result) {
-                    vm.estreno = result.data;
+                    vm.estreno = result.data.data;
                 });
         }
 
@@ -232,17 +232,17 @@ angular.module('SimpleRESTIonic.controllers', [])
 
         function getPorGenero(generos) {
             vm.porGenero = []
-            for (i = 0; i < generos.length; i++) {
-                PeliculasModel.porGenero(generos[i].Genero)
+            for (i = 0; i < generos.total; i++) {
+                PeliculasModel.porGenero(generos.data[i].id)
                     .then(function (result) {
-                        for (j = 0; j < generos.length; j++) {
-                            if (result.data[0].Genero == generos[j].Genero) {
-                                vm.porGenero[j] = result.data;
+                        for (j = 0; j < generos.total; j++) {
+                            if (result.data.genero == generos.data[j].genero) {
+                                vm.porGenero[j] = result.data.peliculas;
                             }
                         }
                         $ionicLoading.hide();
                     });
-            }
+            }ss
         }
 
         vm.getDestacados = getDestacados;

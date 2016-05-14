@@ -12,27 +12,16 @@ angular.module('SimpleRESTIonic.services', [])
     })
 
     .service('CompraModel', function ($http, Backand) {
-        var service = this,
-            baseUrl = '/1/objects/',
-            objectName = 'Compra/',
-            queryUrl = '/1/query/data/';
+        var service = this;
 
-        function getUrl() {
-            return Backand.getApiUrl() + baseUrl + objectName;
-        }
-
-        function getQueryUrl(query) {
-            return Backand.getApiUrl() + queryUrl + query;
-        }
-
-        function getUrlForId(id) {
-            return getUrl() + id;
+        function getUrl(url) {
+            return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
         }
 
         service.funcion = function(idCine, funcionHora, idSala) {
             return $http ({
                 method: 'GET',
-                url: getQueryUrl('SelectFuncion'),
+                url: getUrl('SelectFuncion'),
                 params: {
                     parameters: {
                         CineID: idCine,
@@ -46,7 +35,7 @@ angular.module('SimpleRESTIonic.services', [])
         service.compra = function(nombreCliente, asientos, idCine, idSala, funcionHora) {
             return $http ({
                 method: 'GET',
-                url: getQueryUrl('InsertCompra'),
+                url: getUrl('InsertCompra'),
                 params: {
                     parameters: {
                         NombreCliente: nombreCliente,
@@ -62,7 +51,7 @@ angular.module('SimpleRESTIonic.services', [])
         service.recibo = function(idCompra) {
             return $http ({
                 method: 'GET',
-                url: getQueryUrl('SelectCompra'),
+                url: getUrl('SelectCompra'),
                 params: {
                     parameters: {
                         ID: idCompra,
@@ -73,43 +62,32 @@ angular.module('SimpleRESTIonic.services', [])
     })
 
     .service('PeliculasModel', function ($http, Backand) {
-        var service = this,
-            baseUrl = '/1/objects/',
-            objectName = 'Pelicula/',
-            queryUrl = '/1/query/data/';
+        var service = this;
 
-        function getUrl() {
-            return Backand.getApiUrl() + baseUrl + objectName;
-        }
-
-        function getQueryUrl(query) {
-            return Backand.getApiUrl() + queryUrl + query;
-        }
-
-        function getUrlForId(id) {
-            return getUrl() + id;
+        function getUrl(url) {
+            return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
         }
 
         service.destacados = function () {
-            return $http.get(getQueryUrl('SelectDestacado'));
+            return $http.get(getUrl('destacados'));
         };
 
         service.nuevos = function () {
-            return $http.get(getQueryUrl('SelectNuevo'));
+            return $http.get(getUrl('nuevos'));
         };
 
         service.generos = function () {
-            return $http.get(getQueryUrl('SelectNombresGeneros'));
+            return $http.get(getUrl('genero'));
         };
 
         service.cines = function () {
-            return $http.get(getQueryUrl('SelectCines'));
+            return $http.get(getUrl('cines'));
         };
 
         service.peliculasPorCine = function(idCine) {
             return $http ({
                 method: 'GET',
-                url: getQueryUrl('SelectCine'),
+                url: getUrl('SelectCine'),
                 params: {
                     parameters: {
                         CineID: idCine
@@ -118,22 +96,17 @@ angular.module('SimpleRESTIonic.services', [])
             });
         };
 
-        service.porGenero = function(genero) {
+        service.porGenero = function(id) {
             return $http ({
                 method: 'GET',
-                url: getQueryUrl('SelectPeliculaPorGenero'),
-                params: {
-                    parameters: {
-                        nombreGenero: genero
-                    }
-                }
+                url: getUrl('genero/'+id),
             });
         };
 		
 		service.pelicula = function(id) {
             return $http ({
                 method: 'GET',
-                url: getQueryUrl('SelectPelicula'),
+                url: getUrl('SelectPelicula'),
                 params: {
                     parameters: {
                         ID: id
@@ -145,7 +118,7 @@ angular.module('SimpleRESTIonic.services', [])
 		service.funciones = function(id) {
             return $http ({
                 method: 'GET',
-                url: getQueryUrl('SelectFunciones'),
+                url: getUrl('SelectFunciones'),
                 params: {
                     parameters: {
                         ID: id
@@ -157,7 +130,7 @@ angular.module('SimpleRESTIonic.services', [])
         service.buscar = function(nombrePelicula) {
             return $http ({
                 method: 'GET',
-                url: getQueryUrl('BuscarPelicula'),
+                url: getUrl('BuscarPelicula'),
                 params: {
                     parameters: {
                         nombrePelicula: nombrePelicula
@@ -167,7 +140,7 @@ angular.module('SimpleRESTIonic.services', [])
         };
 
         service.fetch = function (id) {
-            return $http.get(getUrlForId(id));
+            return $http.get(getUrl(id));
         };
 
         service.create = function (object) {
@@ -175,14 +148,13 @@ angular.module('SimpleRESTIonic.services', [])
         };
 
         service.update = function (id, object) {
-            return $http.put(getUrlForId(id), object);
+            return $http.put(getUrl(id), object);
         };
 
         service.delete = function (id) {
-            return $http.delete(getUrlForId(id));
+            return $http.delete(getUrl(id));
         };
     })
-
     .service('LoginService', function (Backand) {
         var service = this;
 
