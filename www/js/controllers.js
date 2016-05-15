@@ -10,7 +10,7 @@ angular.module('SimpleRESTIonic.controllers', [])
         function getCines() {
             PeliculasModel.cines()
                 .then(function (result) {
-                    vm.cines = result.data;
+                    vm.cines = result.data.data;
                     $ionicLoading.hide();
                 });
         }
@@ -242,7 +242,7 @@ angular.module('SimpleRESTIonic.controllers', [])
                         }
                         $ionicLoading.hide();
                     });
-            }ss
+            }
         }
 
         vm.getDestacados = getDestacados;

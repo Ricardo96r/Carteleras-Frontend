@@ -81,18 +81,13 @@ angular.module('SimpleRESTIonic.services', [])
         };
 
         service.cines = function () {
-            return $http.get(getUrl('cines'));
+            return $http.get(getUrl('cine'));
         };
 
         service.peliculasPorCine = function(idCine) {
             return $http ({
                 method: 'GET',
-                url: getUrl('SelectCine'),
-                params: {
-                    parameters: {
-                        CineID: idCine
-                    }
-                }
+                url: getUrl('cine/'+idCine),
             });
         };
 

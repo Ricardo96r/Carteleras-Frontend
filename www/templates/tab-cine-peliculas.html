@@ -6,12 +6,12 @@
             </div>
         </div>
         <div class="list" ng-repeat="pelicula in vm.peliculas">
-            <a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.ID}}/{{pelicula.Nombre}}/cine/{{vm.cine}}">
-                <img src="{{pelicula.Poster}}">
-                <h2>{{ pelicula.Nombre}}</h2>
-                <p>Género: {{ pelicula.Genero }}</p>
-                <p>Censura: {{ pelicula.Clasificacion }}</p>
-                <p>{{ pelicula.Duracion }} minutos</p>
+            <a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.id}}/{{pelicula.nombre}}/cine/{{vm.cine}}">
+                <img src="{{pelicula.poster}}">
+                <h2>{{ pelicula.nombre}}</h2>
+                <p>Género: {{ pelicula.genero }}</p>
+                <p>Censura: {{ pelicula.clasificacion }}</p>
+                <p>{{ pelicula.duracion }} minutos</p>
             </a>
         </div>
     </ion-content>
