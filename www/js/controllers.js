@@ -49,7 +49,7 @@ angular.module('SimpleRESTIonic.controllers', [])
         }
 
         function getBuscarPeliculas() {
-            if ($stateParams.nombrePelicula) {
+            if ($stateParams.nombrePelicula) { 
                 $ionicLoading.show();
                 PeliculasModel.buscar($stateParams.nombrePelicula)
                     .then(function (result) {

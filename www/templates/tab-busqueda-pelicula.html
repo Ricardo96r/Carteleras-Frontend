@@ -4,13 +4,13 @@
             <h1 style="font-size:20px;">No se ha encontrado la pelicula</h1>
         </div>
         <div class="list" ng-repeat="pelicula in vm.peliculas">
-			<!--<a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.ID}}/{{pelicula.Nombre}}/busqueda">-->
+			<!--<a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.id}}/{{pelicula.nombre}}/busqueda">-->
             <a class="item item-thumbnail-left">
-                <img src="{{pelicula.Poster}}" style="width: 100%">
-                <h2>{{ pelicula.Nombre }}</h2>
-                <p>Censura: {{ pelicula.Clasificacion }}</p>
-                <p>{{ pelicula.Duracion }} minutos</p>
-                <p>Director: {{ pelicula.Director }}</p>
+                <img src="{{pelicula.poster}}" style="width: 100%">
+                <h2>{{ pelicula.nombre }}</h2>
+                <p>Censura: {{ pelicula.clasificacion }}</p>
+                <p>{{ pelicula.duracion }} minutos</p>
+                <p>Director: {{ pelicula.director }}</p>
             </a>
         </div>
     </ion-content>

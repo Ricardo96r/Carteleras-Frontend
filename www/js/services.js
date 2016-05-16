@@ -66,6 +66,7 @@ angular.module('SimpleRESTIonic.services', [])
 
         function getUrl(url) {
             return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
+			//return "http://api.app/api/v1/" + url;
         }
 
         service.destacados = function () {
@@ -125,12 +126,7 @@ angular.module('SimpleRESTIonic.services', [])
         service.buscar = function(nombrePelicula) {
             return $http ({
                 method: 'GET',
-                url: getUrl('BuscarPelicula'),
-                params: {
-                    parameters: {
-                        nombrePelicula: nombrePelicula
-                    }
-                }
+                url: getUrl('busqueda/'+nombrePelicula),
             });
         };
 
