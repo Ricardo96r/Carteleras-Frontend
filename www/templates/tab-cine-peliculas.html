@@ -6,7 +6,8 @@
             </div>
         </div>
         <div class="list" ng-repeat="pelicula in vm.peliculas">
-            <a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.id}}/{{pelicula.nombre}}/cine/{{vm.cine}}">
+			<!--<a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.id}}/{{pelicula.nombre}}/cine/{{vm.cine}}">-->
+            <a class="item item-thumbnail-left" >
                 <img src="{{pelicula.poster}}">
                 <h2>{{ pelicula.nombre}}</h2>
                 <p>Género: {{ pelicula.genero }}</p>

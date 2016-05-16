@@ -43,7 +43,8 @@
             <div class="ion-scroll-horizontal-fix">
                 <div class="row">
                     <div class="col poster" ng-repeat="object in vm.porGenero[$index]"  >
-                        <a href="#/tabs/pelicula/{{object.id}}/{{object.nombre}}" style="text-decoration:none;">
+					
+                       <!-- <a href="#/tabs/pelicula/{{object.id}}/{{object.nombre}}" style="text-decoration:none;">-->
                             <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
                                 <div class="item">
                                     <h2>{{ object.nombre }}</h2>
@@ -52,7 +53,7 @@
                                     <img src="{{ object.poster }}" style="max-height: 180px;">
                                 </div>
                             </div>
-                        </a>
+                     <!--   </a>-->
                     </div>
                 </div>
             </div>
