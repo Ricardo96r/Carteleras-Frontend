@@ -3,37 +3,46 @@
         <div class="pelicula-fondo">
             <div class="row">
                 <div class="col poster">
-                    <img src="{{ vm.pelicula[0].Poster }}" style="width: 100%">
+                    <img src="{{ vm.pelicula.poster }}" style="width: 100%">
                 </div>
                 <div class="col col-50">
                     <h3 style="color: white">
-                        {{vm.nombre}}
-                        </p>{{ vm.pelicula[0].Nombre }}</p>
+                        </p>{{ vm.pelicula.nombre }}</p>
                         <small>
-                            <p>Género: {{ vm.pelicula[0].Genero }}</p>
-                            <p>Censura: {{ vm.pelicula[0].Clasificacion }}</p>
-                            <p>{{ vm.pelicula[0].Duracion }} minutos</p>
-                            <p>Director: {{ vm.pelicula[0].Director }}</p>
+                            <p>Género: {{ vm.pelicula.genero.genero }}</p>
+                            <p>Censura: {{ vm.pelicula.clasificacion }}</p>
+                            <p>{{ vm.pelicula.duracion }} minutos</p>
+                            <p>Director(es): <span ng-repeat="director in vm.pelicula.artistas">{{ director.nombre }}, <span></p>
                         </small>
                     </h3>
                 </div>
             </div>
+        </div>
+        <div class="list">
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Fecha
+                </div>
+                <select ng-model="vm.fecha" ng-change="vm.getFunciones()" ng-options="i.dia as (i.fecha | date:'EEEE, dd, MMMM') for i in vm.fechas">
+                </select>
+            </label>
         </div>
         <div class="list" style="margin-top:20px; margin-bottom: 20px;">
             <div class="item" ng-if="vm.funciones.length === 0" style="text-align: center;">
                 <h1 style="font-size:20px;"> No hay funciones disponibles</h1>
             </div>
             <div ng-repeat="funcion in vm.funciones">
-                <a class="item" href="#/tabs/pelicula/{{vm.pelicula[0].ID}}/{{vm.pelicula[0].Nombre}}/cine/{{funcion.CineID}}/funcion/{{funcion.Hora}}/sala/{{funcion.Sala}}{{vm.busqueda}}">
+                <a class="item">
+                   <!-- href="#/tabs/pelicula/{{vm.pelicula.id}}/{{vm.pelicula.nombre}}/cine/{{funcion.cine_id}}/funcion/{{funcion.dia}}/sala/{{funcion.sala_id}}{{vm.busqueda}}"-->
                     <div class="row">
                         <div class="col col-33">
-                            <h1 style="font-size:20px;">{{ funcion.Cine }}</h1>
+                            <h1 style="font-size:20px;">{{ funcion.nombre }}</h1>
                         </div>
                         <div class="col col-33">
-                            <h1 style="font-size:20px;"> {{ funcion.Hora | date : 'shortTime' }}</h1>
+                            <h1 style="font-size:20px;"> {{ funcion.dia | date : 'shortTime' }}</h1>
                         </div>
                         <div class="col col-33">
-                            <span class="badge badge-assertive" style="padding:15px;">{{ funcion.Asientos }}</span>
+                            <span class="badge badge-assertive" style="padding:15px;">{{ funcion.asientos }}</span>
                         </div>
                     </div>
                 </a>

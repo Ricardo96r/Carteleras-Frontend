@@ -15,7 +15,8 @@ angular.module('SimpleRESTIonic.services', [])
         var service = this;
 
         function getUrl(url) {
-            return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
+            //return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
+            return "http://api.app/api/v1/" + url;
         }
 
         service.funcion = function(idCine, funcionHora, idSala) {
@@ -65,8 +66,8 @@ angular.module('SimpleRESTIonic.services', [])
         var service = this;
 
         function getUrl(url) {
-            return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
-			//return "http://api.app/api/v1/" + url;
+            //return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
+			return "http://api.app/api/v1/" + url;
         }
 
         service.destacados = function () {
@@ -102,24 +103,21 @@ angular.module('SimpleRESTIonic.services', [])
 		service.pelicula = function(id) {
             return $http ({
                 method: 'GET',
-                url: getUrl('SelectPelicula'),
-                params: {
-                    parameters: {
-                        ID: id
-                    }
-                }
+                url: getUrl('pelicula/'+id),
+            });
+        };
+
+        service.fechasFunciones = function() {
+            return $http ({
+                method: 'GET',
+                url: getUrl('funcionFecha'),
             });
         };
 		
-		service.funciones = function(id) {
+		service.funciones = function(idPelicula, dia) {
             return $http ({
                 method: 'GET',
-                url: getUrl('SelectFunciones'),
-                params: {
-                    parameters: {
-                        ID: id
-                    }
-                }
+                url: getUrl('pelicula/'+idPelicula+'/funcion/'+dia),
             });
         };
 

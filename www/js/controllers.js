@@ -69,6 +69,7 @@ angular.module('SimpleRESTIonic.controllers', [])
 
     .controller('PeliculaCtrl', function (PeliculasModel, $stateParams, $ionicLoading) {
         var vm = this;
+        vm.fecha = 0;
 
         function cargando() {
             $ionicLoading.show();
@@ -92,19 +93,32 @@ angular.module('SimpleRESTIonic.controllers', [])
             vm.titulo = $stateParams.nombrePelicula;
         }
 
+        function getFechasFunciones() {
+            PeliculasModel.fechasFunciones()
+                .then(function (result) {
+                    vm.fechas = result.data;
+                });
+        }
+
         function getFunciones() {
-            PeliculasModel.funciones($stateParams.idPelicula)
+            PeliculasModel.funciones($stateParams.idPelicula, vm.fecha)
                 .then(function (result) {
                     vm.funciones = result.data;
+                    for(let i = 0; i < vm.funciones.length; i++) {
+                        vm.funciones[i].dia = new Date(vm.funciones[i].dia.replace(/-/g,"/"));
+                    }
                     $ionicLoading.hide();
                 });
         }
 
         vm.getPelicula = getPelicula;
+        vm.getFunciones = getFunciones;
+        vm.getFechasFunciones = getFechasFunciones;
         vm.esTab = esTab;
         cargando();
         esTab();
         getPelicula();
+        getFechasFunciones();
         getFunciones();
     })
 
