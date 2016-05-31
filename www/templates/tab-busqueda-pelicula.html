@@ -3,7 +3,7 @@
         <div class="item" ng-if="vm.peliculas.length === 0" style="text-align: center;">
             <h1 style="font-size:20px;">No se ha encontrado la pelicula</h1>
         </div>
-        <div class="list" ng-repeat="pelicula in vm.peliculas">
+        <div class="list" ng-repeat="pelicula in vm.getTodas">
 			<!--<a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.id}}/{{pelicula.nombre}}/busqueda">-->
             <a class="item item-thumbnail-left">
                 <img src="{{pelicula.poster}}" style="width: 100%">

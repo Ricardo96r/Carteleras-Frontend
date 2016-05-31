@@ -35,37 +35,20 @@ angular.module('SimpleRESTIonic.controllers', [])
         }
     })
 
-    .controller('BusquedaCtrl', function (CompraModel, PeliculasModel, $window, $stateParams, $ionicLoading) {
+
+
+    .controller('BusquedaCtrl', function (CompraModel, PeliculasModel) {
         var vm = this;
 
-        function buscarRecibo(idRecibo) {
-            vm.urlAction = "#/tabs/recibo/" + idRecibo + "/busqueda";
-            $window.location.href = vm.urlAction;
-        }
-
-        function buscarPelicula(nombrePelicula) {
-            vm.urlAction = "#/tabs/busqueda/pelicula/" + nombrePelicula;
-            $window.location.href = vm.urlAction;
-        }
-
-        function getBuscarPeliculas() {
-            if ($stateParams.nombrePelicula) { 
-                $ionicLoading.show();
-                PeliculasModel.buscar($stateParams.nombrePelicula)
-                    .then(function (result) {
-                        vm.peliculas = result.data;
-                        $ionicLoading.hide();
-                    });
-                vm.busqueda = $stateParams.nombrePelicula;
-            }
-        }
-
-        vm.getBuscarPeliculas = getBuscarPeliculas;
-        vm.buscarPelicula = buscarPelicula;
-        vm.buscarRecibo = buscarRecibo;
-        getBuscarPeliculas();
+        PeliculasModel.todas()
+            .then(function (result) {
+                vm.todas = result.data;
+        });
 
     })
+
+
+
 
     .controller('PeliculaCtrl', function (PeliculasModel, $stateParams, $ionicLoading) {
         var vm = this;
@@ -104,7 +87,7 @@ angular.module('SimpleRESTIonic.controllers', [])
             PeliculasModel.funciones($stateParams.idPelicula, vm.fecha)
                 .then(function (result) {
                     vm.funciones = result.data;
-                    for(let i = 0; i < vm.funciones.length; i++) {
+                    for(var i = 0; i < vm.funciones.length; i++) {
                         vm.funciones[i].dia = new Date(vm.funciones[i].dia.replace(/-/g,"/"));
                     }
                     $ionicLoading.hide();

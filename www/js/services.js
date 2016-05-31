@@ -74,6 +74,10 @@ angular.module('SimpleRESTIonic.services', [])
             return $http.get(getUrl('destacados'));
         };
 
+        service.todas = function () {
+            return $http.get(getUrl('pelicula'));
+        };
+
         service.nuevos = function () {
             return $http.get(getUrl('nuevos'));
         };

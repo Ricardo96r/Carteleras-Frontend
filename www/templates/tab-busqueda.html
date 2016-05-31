@@ -1,41 +1,21 @@
 <ion-view view-title="Busqueda">
     <ion-content class="padding has-header" style="margin-top: -10px;background-color: #f3f3eb;">
-        <div class="card">
-            <div class="item item-divider fondo">
-                Buscar pelicula
-            </div>
-            <div class="item item-text-wrap">
-                <form class="create-form" role="form"
-                      ng-submit="vm.buscarPelicula(vm.buscarPelicula.pelicula)">
-                    <div class="list" style="margin-top: -10px;">
-                        <label class="item item-input">
-                            <span class="input-label">Pelicula</span>
-                            <input type="text" ng-model="vm.buscarPelicula.pelicula" required>
-                        </label>
-                        <button class="button button-block button-assertive">
-                            Buscar pelicula
-                        </button>
-                        </div>
-                </form>
-            </div>
+        <div class="list list-inset">
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Search peliculas" ng-model="searchpeliculas.nombre">
+            </label>
         </div>
-        <div class="card">
-            <div class="item item-divider fondo">
-                Buscar recibo
-            </div>
-            <div class="item item-text-wrap">
-                <form class="create-form" role="form"
-                      ng-submit="vm.buscarRecibo(vm.buscarRecibo.ID)">
-                    <div class="list" style="margin-top: -10px;">
-                        <label class="item item-input">
-                            <span class="input-label">ID Recibo</span>
-                            <input type="text" ng-model="vm.buscarRecibo.ID" required>
-                        </label>
-                        <button class="button button-block button-assertive">
-                            Buscar recibo
-                        </button>
-                </form>
-            </div>
+        <div class="list" ng-repeat="pelicula in vm.todas | filter:searchpeliculas">
+            <!--<a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.id}}/{{pelicula.nombre}}/busqueda">-->
+            <a class="item item-thumbnail-left" href="#q
+            /tabs/pelicula/{{pelicula.id}}/{{pelicula.nombre}}" style="text-decoration:none;">
+                <img src="{{pelicula.poster}}" style="width: 100%">
+                <h2>{{ pelicula.nombre }}</h2>
+                <p>Censura: {{ pelicula.clasificacion }}</p>
+                <p>{{ pelicula.duracion }} minutos</p>
+                <p>Director: {{ pelicula.director }}</p>
+            </a>
         </div>
     </ion-content>
 </ion-view>
