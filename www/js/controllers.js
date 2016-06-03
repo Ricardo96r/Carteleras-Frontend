@@ -225,14 +225,14 @@ angular.module('SimpleRESTIonic.controllers', [])
             $ionicLoading.show();
             PeliculasModel.destacados()
                 .then(function (result) {
-                    vm.destacados = result.data.data;
+                    vm.destacados = result.data;
                 });
         }
 
         function getEstrenos() {
             PeliculasModel.nuevos()
                 .then(function (result) {
-                    vm.estreno = result.data.data;
+                    vm.estreno = result.data;
                 });
         }
 

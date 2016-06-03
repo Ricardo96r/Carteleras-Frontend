@@ -1,6 +1,6 @@
 <ion-view view-title="Cartelera">
     <ion-content class="padding has-header" overflow-scroll="true" style="background-color: #f3f3eb;">
-        <!--
+        
             <h4 class="cartelera-genero">Nuevos estrenos</h4>
             <div class="ion-scroll-horizontal-fix">
                 <div class="row">
@@ -18,8 +18,8 @@
                     </div>
                 </div>
             </div>
-    -->
-        <!--
+
+
                 <h4 class="cartelera-genero">Destacados</h4>
                 <div class="ion-scroll-horizontal-fix">
                     <div class="row">
@@ -37,7 +37,8 @@
                         </div>
                     </div>
                 </div>
-        -->
+
+				
         <div ng-repeat="genero in vm.generos.data">
             <h4 class="cartelera-genero">{{ genero.genero }}</h4>
             <div class="ion-scroll-horizontal-fix">
