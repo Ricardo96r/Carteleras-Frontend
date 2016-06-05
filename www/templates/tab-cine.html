@@ -1,11 +1,31 @@
 <ion-view view-title="Cines">
-    <ion-content class="content padding has-header">
-        <ul class="list" style="margin:-10px;">
+    <ion-content class="content padding has-header" overflow-scroll="true" style="background-color: #f3f3eb;">
+       <!-- <ul class="list" style="margin:-10px;">
             <a ng-repeat="cine in vm.cines" href="#/tabs/cine/{{cine.id}}/{{cine.nombre}}" style="text-decoration: none;">
                 <li class="item">
                     <h1 style="font-size: 20px;">{{ cine.nombre }}</h1>
                 </li>
             </a>
-        </ul>
+        </ul> -->
+
+		<div ng-repeat="compania in vm.companias.data">
+            <h4 class="cartelera-genero">{{ compania.nombre }}</h4>
+            <div class="ion-scroll-horizontal-fix">
+                <div class="row">
+                    <div class="col logo" ng-repeat="object in vm.porCompania[$index]">
+                        <a href="#/tabs/cine/{{object.id}}/{{objetc.nombre}}" style="text-decoration:none;">
+                            <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
+                                <div class="item">
+                                    <h2>{{ object.nombre }}</h2>
+                                </div>
+                                <div class="item item-image">
+                                    <img src="{{ object.logo }}" style="min-height: 90px; max-height: 180px;">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

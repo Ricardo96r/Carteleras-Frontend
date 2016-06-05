@@ -10,7 +10,7 @@ angular.module('SimpleRESTIonic.controllers', [])
         function getCines() {
             PeliculasModel.cines()
                 .then(function (result) {
-                    vm.cines = result.data.data;
+                    vm.cines = result.data;
                     $ionicLoading.hide();
                 });
         }
@@ -33,6 +33,36 @@ angular.module('SimpleRESTIonic.controllers', [])
         } else {
             getCines();
         }
+		
+		
+		 function getCompanias() {
+            PeliculasModel.companias()
+                .then(function (result) {
+                    vm.companias = result.data;
+                    getPorCompania(vm.companias);
+                });
+        }
+
+        function getPorCompania(companias) {
+            vm.porCompania = []
+            for (i = 0; i < companias.to; i++) {
+                PeliculasModel.porCompania(companias.data[i].id)
+                    .then(function (result) {
+                        for (j = 0; j < companias.to; j++) {
+							if (result.data[0].compania == companias.data[j].nombre) {
+                                vm.porCompania[j] = result.data;
+							}
+                        }
+                        
+                    });
+            }
+			$ionicLoading.hide();
+        }
+
+        vm.getCompanias = getCompanias;
+        vm.getPorCompania = getPorCompania;
+
+        getCompanias();
     })
 
     .controller('BusquedaCtrl', function (CompraModel, PeliculasModel, $window, $stateParams, $ionicLoading) {

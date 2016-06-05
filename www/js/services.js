@@ -81,6 +81,17 @@ angular.module('SimpleRESTIonic.services', [])
         service.generos = function () {
             return $http.get(getUrl('genero'));
         };
+		
+		service.companias = function () {
+            return $http.get(getUrl('compania'));
+        };
+		
+		 service.porCompania = function(id) {
+            return $http ({
+                method: 'GET',
+                url: getUrl('compania/'+id),
+            });
+        };
 
         service.cines = function () {
             return $http.get(getUrl('cine'));
