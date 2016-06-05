@@ -35,22 +35,22 @@ angular.module('SimpleRESTIonic.controllers', [])
         }
 		
 		
-		 function getCompanias() {
-            PeliculasModel.companias()
+		 function getMunicipios() {
+            PeliculasModel.municipios()
                 .then(function (result) {
-                    vm.companias = result.data;
-                    getPorCompania(vm.companias);
+                    vm.municipios = result.data;
+                    getPorMunicipio(vm.municipios);
                 });
         }
 
-        function getPorCompania(companias) {
-            vm.porCompania = []
-            for (i = 0; i < companias.to; i++) {
-                PeliculasModel.porCompania(companias.data[i].id)
+        function getPorMunicipio(municipios) {
+            vm.porMunicipio = []
+            for (i = 0; i < municipios.to; i++) {
+                PeliculasModel.porMunicipio(municipios.data[i].direccion)
                     .then(function (result) {
-                        for (j = 0; j < companias.to; j++) {
-							if (result.data[0].compania == companias.data[j].nombre) {
-                                vm.porCompania[j] = result.data;
+                        for (j = 0; j < municipios.to; j++) {
+							if (result.data[0].direccion == municipios.data[j].direccion) {
+                                vm.porMunicipio[j] = result.data;
 							}
                         }
                         
@@ -59,10 +59,10 @@ angular.module('SimpleRESTIonic.controllers', [])
 			$ionicLoading.hide();
         }
 
-        vm.getCompanias = getCompanias;
-        vm.getPorCompania = getPorCompania;
+        vm.getMunicipios = getMunicipios;
+        vm.getPorMuncipio = getPorMunicipio;
 
-        getCompanias();
+        getMunicipios();
     })
 
     .controller('BusquedaCtrl', function (CompraModel, PeliculasModel, $window, $stateParams, $ionicLoading) {

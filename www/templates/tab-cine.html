@@ -8,18 +8,18 @@
             </a>
         </ul> -->
 
-		<div ng-repeat="compania in vm.companias.data">
-            <h4 class="cartelera-genero">{{ compania.nombre }}</h4>
+		<div ng-repeat="municipio in vm.municipios.data">
+            <h4 class="cartelera-genero">{{ municipio.direccion }}</h4>
             <div class="ion-scroll-horizontal-fix">
                 <div class="row">
-                    <div class="col logo" ng-repeat="object in vm.porCompania[$index]">
+                    <div class="col logo" ng-repeat="object in vm.porMunicipio[$index]">
                         <a href="#/tabs/cine/{{object.id}}/{{objetc.nombre}}" style="text-decoration:none;">
                             <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
                                 <div class="item">
                                     <h2>{{ object.nombre }}</h2>
                                 </div>
                                 <div class="item item-image">
-                                    <img src="{{ object.logo }}" style="min-height: 90px; max-height: 180px;">
+                                    <img src="{{ object.logo }}" style="max-width: 150px; max-height: 150px;">
                                 </div>
                             </div>
                         </a>

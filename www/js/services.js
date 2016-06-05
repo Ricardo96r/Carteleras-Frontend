@@ -15,8 +15,8 @@ angular.module('SimpleRESTIonic.services', [])
         var service = this;
 
         function getUrl(url) {
-            return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
-            //return "http://api.app/api/v1/" + url;
+            //return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
+            return "http://api.app/api/v1/" + url;
         }
 
         service.funcion = function(idCine, funcionHora, idSala) {
@@ -66,8 +66,8 @@ angular.module('SimpleRESTIonic.services', [])
         var service = this;
 
         function getUrl(url) {
-			return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
-			//return "http://api.app/api/v1/" + url;
+			//return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
+			return "http://api.app/api/v1/" + url;
         }
 
         service.destacados = function () {
@@ -82,14 +82,14 @@ angular.module('SimpleRESTIonic.services', [])
             return $http.get(getUrl('genero'));
         };
 		
-		service.companias = function () {
-            return $http.get(getUrl('compania'));
+		service.municipios = function () {
+            return $http.get(getUrl('municipios'));
         };
 		
-		 service.porCompania = function(id) {
+		 service.porMunicipio = function(dir) {
             return $http ({
                 method: 'GET',
-                url: getUrl('compania/'+id),
+                url: getUrl('porMunicipio/'+dir),
             });
         };
 
