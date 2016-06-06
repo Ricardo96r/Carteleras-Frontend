@@ -10,16 +10,16 @@
 
 		<div ng-repeat="municipio in vm.municipios.data">
             <h4 class="cartelera-genero">{{ municipio.direccion }}</h4>
-            <div class="ion-scroll-horizontal-fix">
+            <div class="ion-scroll-horizontal-fix" >
                 <div class="row">
                     <div class="col logo" ng-repeat="object in vm.porMunicipio[$index]">
                         <a href="#/tabs/cine/{{object.id}}/{{objetc.nombre}}" style="text-decoration:none;">
-                            <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
+                            <div class="list card" style="margin-top: -5px; margin-bottom: 5px; min-width: 120px; min-height: 160px; max-width: 130px; max-height: 160px;" >
                                 <div class="item">
                                     <h2>{{ object.nombre }}</h2>
                                 </div>
                                 <div class="item item-image">
-                                    <img src="{{ object.logo }}" style="min-width: 100px; min-height: 100px; max-height: 100px;">
+                                    <img src="{{ object.logo }}" style="min-width: 100px; min-height: 100px; max-width: 120px; max-height: 100px;">
                                 </div>
                             </div>
                         </a>
