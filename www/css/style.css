@@ -33,3 +33,27 @@
 	vertical-align: middle;
 	width: 100%;
 }
+
+i.icon.ion-calculator::before {
+  content: url('../img/popcorn-and-soda-glassa.png') !important;
+} 
+
+i.icon.ion-transgender::before {
+  content: url('../img/popcorn-and-soda-glassi.png') !important;
+} 
+
+.tabs .tab-item .icon.cinea {
+  background-repeat: no-repeat;
+  background-position: 50%;
+  height: 32px;
+  background-image: url('../img/popcorn-and-soda-glassa.png');
+  background-size:contain;
+}
+
+.tabs .tab-item .icon.cinei {
+  background-repeat: no-repeat;
+  background-position: 50%;
+  height: 32px;
+  background-image: url('../img/popcorn-and-soda-glassi.png');
+  background-size:contain;
+}
