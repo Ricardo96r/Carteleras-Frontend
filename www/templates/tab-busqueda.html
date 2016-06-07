@@ -3,11 +3,10 @@
         <div class="list list-inset">
             <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="text" placeholder="Search peliculas" ng-model="searchpeliculas.nombre">
+                <input type="text" placeholder="Búsqueda de películas" ng-model="searchpeliculas.nombre">
             </label>
         </div>
 		<div class="list" ng-repeat="pelicula in vm.todas | filter:searchpeliculas">
-            <!--<a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.id}}/{{pelicula.nombre}}/busqueda">-->
             <a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.id}}/{{pelicula.nombre}}/busqueda" style="text-decoration:none;">
                 <img src="{{pelicula.poster}}" style="width: 100%">
                 <h2>{{ pelicula.nombre }}</h2>
