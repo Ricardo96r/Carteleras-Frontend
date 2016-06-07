@@ -12,7 +12,7 @@
                 <h2>{{ pelicula.nombre }}</h2>
                 <p>Censura: {{ pelicula.clasificacion }}</p>
                 <p>{{ pelicula.duracion }} minutos</p>
-                <p>Director: {{ pelicula.director }}</p>
+				<p>Género: {{ pelicula.genero }}</p>
             </a>
             <h1 ng-if="todas.length == 0" style="font-size:20px;"> No hay funciones disponibles</h1>
             <div class="list" ng-show="!todas.length" style="text-align: center;">
