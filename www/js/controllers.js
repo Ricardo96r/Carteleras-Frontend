@@ -68,6 +68,11 @@ angular.module('SimpleRESTIonic.controllers', [])
     .controller('BusquedaCtrl', function (CompraModel, PeliculasModel, $window, $stateParams, $ionicLoading) {
         var vm = this;
 
+		PeliculasModel.todas()
+            .then(function (result) {
+                vm.todas = result.data;
+        });
+		
         function buscarRecibo(idRecibo) {
             vm.urlAction = "#/tabs/recibo/" + idRecibo + "/busqueda";
             $window.location.href = vm.urlAction;
