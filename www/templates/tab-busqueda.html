@@ -6,7 +6,7 @@
                 <input type="text" placeholder="Búsqueda de películas" ng-model="searchpeliculas.nombre">
             </label>
         </div>
-		<div class="list" ng-repeat="pelicula in vm.todas | filter:searchpeliculas">
+		<div class="list" ng-repeat="pelicula in todas = (vm.todas | filter:searchpeliculas)">
             <a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.id}}/{{pelicula.nombre}}/busqueda" style="text-decoration:none;">
                 <img src="{{pelicula.poster}}" style="width: 100%">
                 <h2>{{ pelicula.nombre }}</h2>
@@ -14,6 +14,10 @@
                 <p>{{ pelicula.duracion }} minutos</p>
                 <p>Director: {{ pelicula.director }}</p>
             </a>
+            <h1 ng-if="todas.length == 0" style="font-size:20px;"> No hay funciones disponibles</h1>
+            <div class="list" ng-show="!todas.length" style="text-align: center;">
+                <h1 ng-show="!todas.length" style="font-size:20px;"> No hay funciones disponibles</h1>
+            </div>
         </div>
     </ion-content>
 </ion-view>

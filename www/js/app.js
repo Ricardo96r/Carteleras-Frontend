@@ -94,7 +94,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 }
             })
             .state('tab.cpelicula', {
-                url: '/pelicula/:idPelicula/:nombrePelicula/cine/:cine',
+                url: '/pelicula/:idPelicula/:nombrePelicula/cine/:idCine',
                 views: {
                     'tab-cine': {
                         templateUrl: 'templates/tab-pelicula.html',

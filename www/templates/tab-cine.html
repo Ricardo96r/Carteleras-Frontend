@@ -12,8 +12,8 @@
             <h4 class="cartelera-genero">{{ municipio.direccion }}</h4>
             <div class="ion-scroll-horizontal-fix" >
                 <div class="row">
-                    <div class="col logo" ng-repeat="object in vm.porMunicipio[$index]">
-                        <a href="#/tabs/cine/{{object.id}}/{{objetc.nombre}}" style="text-decoration:none;">
+                    <div class="col poster" ng-repeat="object in vm.porMunicipio[$index]">
+                        <a href="#/tabs/cine/{{object.id}}/{{object.nombre}}" style="text-decoration:none;">
                             <div class="list card" style="margin-top: -5px; margin-bottom: 5px; min-width: 120px; min-height: 160px; max-width: 130px; max-height: 160px;" >
                                 <div class="item">
                                     <h2>{{ object.nombre }}</h2>
