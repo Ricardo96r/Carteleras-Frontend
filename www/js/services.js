@@ -19,45 +19,24 @@ angular.module('SimpleRESTIonic.services', [])
             return "http://api.app/api/v1/" + url;
         }
 
-        service.funcion = function(idCine, funcionHora, idSala) {
+        service.funcion = function(funcionID) {
             return $http ({
                 method: 'GET',
-                url: getUrl('SelectFuncion'),
-                params: {
-                    parameters: {
-                        CineID: idCine,
-                        Dia: funcionHora,
-                        Sala: idSala,
-                    }
-                }
+                url: getUrl('/funcion/'+funcionID),
             });
         };
 
-        service.compra = function(nombreCliente, asientos, idCine, idSala, funcionHora) {
+        service.compra = function(usuarioID, funcionID, asientos) {
             return $http ({
                 method: 'GET',
-                url: getUrl('InsertCompra'),
-                params: {
-                    parameters: {
-                        NombreCliente: nombreCliente,
-                        Asientos: asientos,
-                        CineID: idCine,
-                        Sala: idSala,
-                        Hora: funcionHora
-                    }
-                }
+                url: getUrl('/funcion/'+funcionID+'/usuario/'+usuarioID+'/asientos/'+asientos),
             });
         };
 
         service.recibo = function(idCompra) {
             return $http ({
                 method: 'GET',
-                url: getUrl('SelectCompra'),
-                params: {
-                    parameters: {
-                        ID: idCompra,
-                    }
-                }
+                url: getUrl('/compra/'+idCompra),
             });
         };
     })
@@ -166,6 +145,7 @@ angular.module('SimpleRESTIonic.services', [])
             return $http.delete(getUrl(id));
         };
     })
+	
     .service('LoginService', function (Backand) {
         var service = this;
 
