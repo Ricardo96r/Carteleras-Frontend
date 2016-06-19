@@ -15,8 +15,8 @@ angular.module('SimpleRESTIonic.services', [])
         var service = this;
 
         function getUrl(url) {
-            //return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
-            return "http://api.app/api/v1/" + url;
+            return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
+            //return "http://api.app/api/v1/" + url;
         }
 
         service.funcion = function(funcionID) {
@@ -45,8 +45,8 @@ angular.module('SimpleRESTIonic.services', [])
         var service = this;
 
         function getUrl(url) {
-			//return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
-			return "http://api.app/api/v1/" + url;
+			return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
+			//return "http://api.app/api/v1/" + url;
         }
 
         service.destacados = function () {
