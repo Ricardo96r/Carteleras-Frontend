@@ -1,52 +1,94 @@
 angular.module('SimpleRESTIonic.services', [])
 
-    .service('APIInterceptor', function ($rootScope, $q) {
-        var service = this;
-
-        service.responseError = function (response) {
-            if (response.status === 401) {
-                $rootScope.$broadcast('unauthorized');
-            }
-            return $q.reject(response);
-        };
+    .constant('api', {
+        url: 'http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/',
+        //url: 'http://api.app/api/v1/',
     })
 
-    .service('CompraModel', function ($http, Backand) {
+    .service('LoginModel', function ($http, api) {
         var service = this;
 
         function getUrl(url) {
-            return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
-            //return "http://api.app/api/v1/" + url;
+            return api.url + url;
+        }
+
+        service.getLoginCheck = function(token) {
+            return $http ({
+                method: 'GET',
+                url: getUrl('login'),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json',
+                    'Authorization': token,
+                },
+            });
+        };
+
+        service.getUsuario = function(token) {
+            return $http ({
+                method: 'GET',
+                url: getUrl('usuario'),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json',
+                    'Authorization': token,
+                },
+            });
+        };
+
+        service.postUsuario = function(nombre, email, password) {
+            return $http ({
+                method: 'POST',
+                url: getUrl('usuario'),
+                data: 'nombre='+nombre+'&email='+email+'&password='+password,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json',
+                },
+            });
+        };
+
+    })
+
+    .service('CompraModel', function ($http, api) {
+        var service = this;
+
+        function getUrl(url) {
+            return api.url + url;
         }
 
         service.funcion = function(funcionID) {
             return $http ({
                 method: 'GET',
-                url: getUrl('/funcion/'+funcionID),
+                url: getUrl('funcion/'+funcionID),
             });
         };
 
-        service.compra = function(usuarioID, funcionID, asientos) {
+        service.compra = function(funcionID, asientos, token) {
             return $http ({
                 method: 'GET',
-                url: getUrl('/funcion/'+funcionID+'/usuario/'+usuarioID+'/asientos/'+asientos),
+                url: getUrl('funcion/'+funcionID+'/asientos/'+asientos),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json',
+                    'Authorization': token,
+                },
             });
         };
 
         service.recibo = function(idCompra) {
             return $http ({
                 method: 'GET',
-                url: getUrl('/compra/'+idCompra),
+                url: getUrl('compra/'+idCompra),
             });
         };
     })
 
-    .service('PeliculasModel', function ($http, Backand) {
+    .service('PeliculasModel', function ($http, api) {
         var service = this;
 
         function getUrl(url) {
-			return "http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/" + url;
-			//return "http://api.app/api/v1/" + url;
+            return api.url + url;
         }
 
         service.destacados = function () {
@@ -145,21 +187,3 @@ angular.module('SimpleRESTIonic.services', [])
             return $http.delete(getUrl(id));
         };
     })
-	
-    .service('LoginService', function (Backand) {
-        var service = this;
-
-        service.signin = function (email, password, appName) {
-            //call Backand for sign in
-            return Backand.signin(email, password);
-        };
-
-        service.anonymousLogin= function(){
-            // don't have to do anything here,
-            // because we set app token att app.js
-        }
-
-        service.signout = function () {
-            return Backand.signout();
-        };
-    });

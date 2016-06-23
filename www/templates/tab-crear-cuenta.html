@@ -1,11 +1,15 @@
-<ion-view view-title="Iniciar sesión">
+<ion-view view-title="Crear cuenta">
     <ion-content class="content padding has-header" style="background-color: #f3f3eb; margin-top: -10px;">
-        <form class="create-form" name="signUpForm" role="form" ng-submit="vm.loginForm(vm.cuenta.email, vm.cuenta.password)">
+        <form class="create-form" name="signUpForm" role="form" ng-submit="vm.crearUsuario(vm.cuenta.nombre, vm.cuenta.email, vm.cuenta.password, vm.cuenta.passwordRepeat)">
             <div class="card">
                 <div class="item item-divider fondo">
-                    Iniciar sesión
+                    Crear cuenta
                 </div>
                 <div class="list">
+                    <label class="item item-input">
+                        <span class="input-label">Nombre</span>
+                        <input type="text" ng-model="vm.cuenta.nombre">
+                    </label>
                     <label class="item item-input">
                         <span class="input-label">Email</span>
                         <input type="text" ng-model="vm.cuenta.email">
@@ -14,17 +18,18 @@
                         <span class="input-label">Contraseña</span>
                         <input type="password" ng-model="vm.cuenta.password">
                     </label>
+                    <label class="item item-input">
+                        <span class="input-label">Repetir Contraseña</span>
+                        <input type="password" ng-model="vm.cuenta.passwordRepeat">
+                    </label>
                     <div class="item item-text-wrap" ng-if="vm.error" style="margin-bottom: -10px">
                         <p>{{ vm.error }}</p>
                     </div>
                 </div>
             </div>
             <button class="button button-block button-assertive">
-                Iniciar sesión
+                Crear cuenta
             </button>
         </form>
-        <button class="button button-block button-balanced" ng-click="vm.irCrearCuenta()">
-            Crear cuenta
-        </button>
     </ion-content>
 </ion-view>
