@@ -171,19 +171,19 @@ angular.module('SimpleRESTIonic.services', [])
             });
         };
 
-        service.fetch = function (id) {
-            return $http.get(getUrl(id));
+         service.artistas = function() {
+            return $http ({
+                method: 'GET',
+                url: getUrl('artista'),
+            });
         };
-
-        service.create = function (object) {
-            return $http.post(getUrl(), object);
+		
+		service.peliculasPorArtista = function(artistaID) {
+            return $http ({
+                method: 'GET',
+                url: getUrl('artista/'+artistaID),
+            });
         };
-
-        service.update = function (id, object) {
-            return $http.put(getUrl(id), object);
-        };
-
-        service.delete = function (id) {
-            return $http.delete(getUrl(id));
-        };
+		
+		
     })
