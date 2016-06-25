@@ -1,12 +1,24 @@
 <ion-view view-title="{{ vm.cine }}">
     <ion-content class="content padding has-header" style="background-color: #f3f3eb;">
+        <ul class="list">
+            <li class="item item-toggle" style="border-radius: 10px;">
+                Solo películas del día
+                <label class="toggle toggle-assertive" ng-click="vm.diaSemanaToogleClick()">
+                    <input type="checkbox" ng-model="vm.diaSemanaToogle">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </li>
+        </ul>
         <div class="card" ng-if="vm.peliculas.length === 0">
             <div class="item" style="text-align: center;">
                 <h1 style="font-size:20px;"> No hay películas disponibles</h1>
             </div>
         </div>
         <div class="list" ng-repeat="pelicula in vm.peliculas">
-            <a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.id}}/{{pelicula.nombre}}/cine/{{vm.idCine}}">
+            <a class="item item-thumbnail-left"
+               href="#/tabs/pelicula/{{pelicula.id}}/{{pelicula.nombre}}/cine/{{vm.idCine}}">
                 <img src="{{pelicula.poster}}">
                 <h2>{{ pelicula.nombre}}</h2>
                 <p>Género: {{ pelicula.genero.genero }}</p>

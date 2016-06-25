@@ -12,8 +12,8 @@ angular.module('SimpleRESTIonic.services', [])
             return api.url + url;
         }
 
-        service.getLoginCheck = function(token) {
-            return $http ({
+        service.getLoginCheck = function (token) {
+            return $http({
                 method: 'GET',
                 url: getUrl('login'),
                 headers: {
@@ -24,8 +24,8 @@ angular.module('SimpleRESTIonic.services', [])
             });
         };
 
-        service.getUsuario = function(token) {
-            return $http ({
+        service.getUsuario = function (token) {
+            return $http({
                 method: 'GET',
                 url: getUrl('usuario'),
                 headers: {
@@ -36,11 +36,11 @@ angular.module('SimpleRESTIonic.services', [])
             });
         };
 
-        service.postUsuario = function(nombre, email, password) {
-            return $http ({
+        service.postUsuario = function (nombre, email, password) {
+            return $http({
                 method: 'POST',
                 url: getUrl('usuario'),
-                data: 'nombre='+nombre+'&email='+email+'&password='+password,
+                data: 'nombre=' + nombre + '&email=' + email + '&password=' + password,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     'Accept': 'application/json',
@@ -57,17 +57,17 @@ angular.module('SimpleRESTIonic.services', [])
             return api.url + url;
         }
 
-        service.funcion = function(funcionID) {
-            return $http ({
+        service.funcion = function (funcionID) {
+            return $http({
                 method: 'GET',
-                url: getUrl('funcion/'+funcionID),
+                url: getUrl('funcion/' + funcionID),
             });
         };
 
-        service.compra = function(funcionID, asientos, token) {
-            return $http ({
+        service.compra = function (funcionID, asientos, token) {
+            return $http({
                 method: 'GET',
-                url: getUrl('funcion/'+funcionID+'/asientos/'+asientos),
+                url: getUrl('funcion/' + funcionID + '/asientos/' + asientos),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     'Accept': 'application/json',
@@ -76,10 +76,10 @@ angular.module('SimpleRESTIonic.services', [])
             });
         };
 
-        service.recibo = function(idCompra) {
-            return $http ({
+        service.recibo = function (idCompra) {
+            return $http({
                 method: 'GET',
-                url: getUrl('compra/'+idCompra),
+                url: getUrl('compra/' + idCompra),
             });
         };
     })
@@ -91,30 +91,30 @@ angular.module('SimpleRESTIonic.services', [])
             return api.url + url;
         }
 
-        service.destacados = function () {
-            return $http.get(getUrl('destacados'));
+        service.destacados = function (diaSemana = 1) {
+            return $http.get(getUrl('destacados/' + diaSemana));
         };
 
-		
+
         service.todas = function () {
             return $http.get(getUrl('pelicula'));
         };
-        service.nuevos = function () {
-            return $http.get(getUrl('nuevos'));
+        service.nuevos = function (diaSemana = 1) {
+            return $http.get(getUrl('nuevos/' + diaSemana));
         };
 
-        service.generos = function () {
-            return $http.get(getUrl('genero'));
+        service.generos = function (diaSemana = 1) {
+            return $http.get(getUrl('genero/' + diaSemana));
         };
-		
-		service.municipios = function () {
+
+        service.municipios = function () {
             return $http.get(getUrl('municipios'));
         };
-		
-		 service.porMunicipio = function(dir) {
-            return $http ({
+
+        service.porMunicipio = function (dir) {
+            return $http({
                 method: 'GET',
-                url: getUrl('porMunicipio/'+dir),
+                url: getUrl('porMunicipio/' + dir),
             });
         };
 
@@ -122,68 +122,68 @@ angular.module('SimpleRESTIonic.services', [])
             return $http.get(getUrl('cine'));
         };
 
-        service.peliculasPorCine = function(idCine) {
-            return $http ({
+        service.peliculasPorCine = function (idCine, diaSemana = 1) {
+            return $http({
                 method: 'GET',
-                url: getUrl('cine/'+idCine),
+                url: getUrl('cine/' + idCine + '/' + diaSemana),
             });
         };
 
-        service.porGenero = function(id) {
-            return $http ({
+        service.porGenero = function (id, diaSemana = 1) {
+            return $http({
                 method: 'GET',
-                url: getUrl('genero/'+id),
-            });
-        };
-		
-		service.pelicula = function(id) {
-            return $http ({
-                method: 'GET',
-                url: getUrl('pelicula/'+id),
+                url: getUrl('genero/' + id + '/' + diaSemana),
             });
         };
 
-        service.fechasFunciones = function() {
-            return $http ({
+        service.pelicula = function (id) {
+            return $http({
+                method: 'GET',
+                url: getUrl('pelicula/' + id),
+            });
+        };
+
+        service.fechasFunciones = function () {
+            return $http({
                 method: 'GET',
                 url: getUrl('funcionFecha'),
             });
         };
-		
-		service.funciones = function(idPelicula, dia) {
-            return $http ({
+
+        service.funciones = function (idPelicula, dia) {
+            return $http({
                 method: 'GET',
-                url: getUrl('pelicula/'+idPelicula+'/funcion/'+dia),
+                url: getUrl('pelicula/' + idPelicula + '/funcion/' + dia),
             });
         };
 
-        service.funcionesPorCine = function(idPelicula, dia, idCine) {
-            return $http ({
+        service.funcionesPorCine = function (idPelicula, dia, idCine) {
+            return $http({
                 method: 'GET',
-                url: getUrl('pelicula/'+idPelicula+'/funcion/'+dia+'/cine/'+idCine),
+                url: getUrl('pelicula/' + idPelicula + '/funcion/' + dia + '/cine/' + idCine),
             });
         };
 
-        service.buscar = function(nombrePelicula) {
-            return $http ({
+        service.buscar = function (nombrePelicula) {
+            return $http({
                 method: 'GET',
-                url: getUrl('busqueda/'+nombrePelicula),
+                url: getUrl('busqueda/' + nombrePelicula),
             });
         };
 
-         service.artistas = function() {
-            return $http ({
+        service.artistas = function () {
+            return $http({
                 method: 'GET',
                 url: getUrl('artista'),
             });
         };
-		
-		service.peliculasPorArtista = function(artistaID) {
-            return $http ({
+
+        service.peliculasPorArtista = function (artistaID) {
+            return $http({
                 method: 'GET',
-                url: getUrl('artista/'+artistaID),
+                url: getUrl('artista/' + artistaID),
             });
         };
-		
-		
+
+
     })

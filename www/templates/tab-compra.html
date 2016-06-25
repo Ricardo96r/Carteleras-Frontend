@@ -5,35 +5,36 @@
                 <h1 style="font-size:20px;"> No hay asientos disponibles</h1>
             </div>
         </div>
-        <div class="card">
-            <div class="item item-divider fondo">
-                Compra
+        <div ng-if="vm.funcion.asientos > 0">
+            <div class="card">
+                <div class="item item-divider fondo">
+                    Compra
+                </div>
+                <div class="item item-avatar">
+                    <img src="{{ vm.pelicula.poster }}">
+                    <h2>{{ vm.pelicula.nombre }}</h2>
+                    <p>{{ vm.funcion.dia | date: 'medium'}}</p>
+                </div>
+                <div class="item item-text-wrap">
+                    <form class="create-form" role="form"
+                          ng-submit="vm.getFuncion(); vm.crearCompra(vm.nuevaCompra.asientos, vm.funcion.asientos, vm.funcion.id)">
+                        <div class="list" style="margin-top: -10px;">
+                            <label class="item item-input">
+                                <span class="input-label">Asientos</span>
+                                <input type="text" ng-model="vm.nuevaCompra.asientos" required>
+                            </label>
+                            <button class="button button-block button-assertive">
+                                Comprar
+                            </button>
+                    </form>
+                </div>
+                <div class="item item-text-wrap" ng-if="vm.error" style="margin-bottom: -10px">
+                    <p>{{ vm.error }}</p>
+                </div>
             </div>
-            <div class="item item-avatar">
-                <img src="{{ vm.pelicula.poster }}">
-                <h2>{{ vm.pelicula.nombre }}</h2>
-                <p>{{ vm.funcion.dia | date: 'medium'}}</p>
+            <div class="item item-divider">
+                Quedan solo {{ vm.funcion.asientos }} asiento(s)
             </div>
-            <div class="item item-text-wrap">
-                <form class="create-form" role="form"
-                      ng-submit="vm.getFuncion(); vm.crearCompra(vm.nuevaCompra.asientos, vm.funcion.asientos, vm.funcion.id)">
-                    <div class="list" style="margin-top: -10px;">
-                        <label class="item item-input">
-                            <span class="input-label">Asientos</span>
-                            <input type="text" ng-model="vm.nuevaCompra.asientos" required>
-                        </label>
-                        <button class="button button-block button-assertive">
-                            Comprar
-                        </button>
-                </form>
-            </div>
-            <div class="item item-text-wrap" ng-if="vm.error" style="margin-bottom: -10px">
-                <p>{{ vm.error }}</p>
-            </div>
-        </div>
-        <div class="item item-divider">
-            Quedan solo {{ vm.funcion.asientos }} asiento(s)
-        </div>
         </div>
     </ion-content>
 </ion-view>

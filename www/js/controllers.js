@@ -197,7 +197,19 @@ angular.module('SimpleRESTIonic.controllers', [])
 
     .controller('CineCtrl', function (PeliculasModel, $stateParams, $ionicLoading) {
         var vm = this;
+        vm.diaSemanaToogle = true;
+        vm.urlDiaSemana = 1;
 
+        function diaSemanaToogleClick() {
+            if (vm.diaSemanaToogle) {
+                vm.urlDiaSemana = 1;
+            } else {
+                vm.urlDiaSemana = 0;
+            }
+            $ionicLoading.show();
+            getPeliculasPorCine();
+        }
+        
         function getCines() {
             PeliculasModel.cines()
                 .then(function (result) {
@@ -208,7 +220,7 @@ angular.module('SimpleRESTIonic.controllers', [])
 
         function getPeliculasPorCine() {
             vm.idCine = $stateParams.idCine;
-            PeliculasModel.peliculasPorCine($stateParams.idCine)
+            PeliculasModel.peliculasPorCine($stateParams.idCine, vm.urlDiaSemana)
                 .then(function (result) {
                     vm.peliculas = result.data;
                     $ionicLoading.hide();
@@ -253,6 +265,7 @@ angular.module('SimpleRESTIonic.controllers', [])
 
         vm.getMunicipios = getMunicipios;
         vm.getPorMuncipio = getPorMunicipio;
+        vm.diaSemanaToogleClick = diaSemanaToogleClick;
 
         getMunicipios();
     })
@@ -312,7 +325,7 @@ angular.module('SimpleRESTIonic.controllers', [])
                 }
             }
         }
-
+        
         function esTab() {
             if ($stateParams.busqueda) {
                 vm.busqueda = "/busqueda";
@@ -463,24 +476,37 @@ angular.module('SimpleRESTIonic.controllers', [])
 
     .controller('DashboardCtrl', function (PeliculasModel, $ionicLoading) {
         var vm = this;
+        vm.diaSemanaToogle = true;
+        vm.urlDiaSemana = 1;
+        
+        function diaSemanaToogleClick() {
+            if (vm.diaSemanaToogle) {
+                vm.urlDiaSemana = 1;
+            } else {
+                vm.urlDiaSemana = 0;
+            }
+            getDestacados();
+            getEstrenos();
+            getGeneros();
+        }
 
         function getDestacados() {
             $ionicLoading.show();
-            PeliculasModel.destacados()
+            PeliculasModel.destacados(vm.urlDiaSemana)
                 .then(function (result) {
                     vm.destacados = result.data;
                 });
         }
 
         function getEstrenos() {
-            PeliculasModel.nuevos()
+            PeliculasModel.nuevos(vm.urlDiaSemana)
                 .then(function (result) {
                     vm.estreno = result.data;
                 });
         }
 
         function getGeneros() {
-            PeliculasModel.generos()
+            PeliculasModel.generos(vm.urlDiaSemana)
                 .then(function (result) {
                     vm.generos = result.data;
                     getPorGenero(vm.generos);
@@ -490,7 +516,7 @@ angular.module('SimpleRESTIonic.controllers', [])
         function getPorGenero(generos) {
             vm.porGenero = []
             for (i = 0; i < generos.total; i++) {
-                PeliculasModel.porGenero(generos.data[i].id)
+                PeliculasModel.porGenero(generos.data[i].id, vm.urlDiaSemana)
                     .then(function (result) {
                         for (j = 0; j < generos.total; j++) {
                             if (result.data.genero == generos.data[j].genero) {
@@ -506,6 +532,7 @@ angular.module('SimpleRESTIonic.controllers', [])
         vm.getEstrenos = getEstrenos;
         vm.getGeneros = getGeneros;
         vm.getPorGenero = getPorGenero;
+        vm.diaSemanaToogleClick = diaSemanaToogleClick;
         getDestacados();
         getEstrenos();
         getGeneros();
