@@ -57,3 +57,7 @@ i.icon.ion-transgender::before {
   background-image: url('../img/popcorn-and-soda-glassi.png');
   background-size:contain;
 }
+
+.cartelera-button {
+	padding: -10px;
+}

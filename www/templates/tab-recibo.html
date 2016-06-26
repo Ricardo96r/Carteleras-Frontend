@@ -10,12 +10,12 @@
                 Recibo
             </div>
             <div class="item item-text-wrap">
-                <h1>#{{ vm.recibo[0].ID_Compra }}</h1>
+                <h1>#{{ vm.recibo.id }}</h1>
             </div>
             <div class="item item-avatar" style="position: relative;">
-                <img src="{{ vm.recibo[0].Poster }}">
-                <h2>{{ vm.recibo[0].Pelicula }}</h2>
-                <p>{{ vm.recibo[0].Hora | date:'medium'}}</p>
+                <img src="{{ vm.recibo.funcion.pelicula.poster }}">
+                <h2>{{ vm.recibo.funcion.pelicula.nombre }}</h2>
+                <p>{{ vm.recibo.funcion.dia | date:'medium'}}</p>
             </div>
             <div class="item item-text-wrap">
                 <div class="row" style="margin: -10px;">
@@ -23,7 +23,7 @@
                         Cine
                     </div>
                     <div class="col col-50" style="text-align: right">
-                        {{vm.recibo[0].Cine}}
+                        {{vm.recibo.funcion.sala.cine.nombre}}
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                         Sala
                     </div>
                     <div class="col col-50" style="text-align: right">
-                        {{vm.recibo[0].Sala}}
+                        {{vm.recibo.funcion.sala.sala}}
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                         Nombre del cliente
                     </div>
                     <div class="col col-50" style="text-align: right">
-                        {{vm.recibo[0].NombreCliente}}
+                        {{vm.recibo.usuario.nombre}}
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                         Cantidad de asientos
                     </div>
                     <div class="col col-50" style="text-align: right">
-                        {{vm.recibo[0].Asiento}}
+                        {{vm.recibo.asientos}}
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                         Fecha de compra
                     </div>
                     <div class="col col-50" style="text-align: right">
-                        {{ vm.recibo[0].Fecha | date: 'medium' : '-0900'}}
+                        {{ vm.recibo.creacion | date: 'medium' : '-0900'}}
                     </div>
                 </div>
             </div>

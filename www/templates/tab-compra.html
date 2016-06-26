@@ -1,42 +1,40 @@
 <ion-view view-title="{{ vm.titulo }}">
     <ion-content class="content padding has-header" style="background-color: #f3f3eb; margin-top: -10px;">
-        <div class="card" ng-if="vm.funcion[0].Asientos <= 0">
+        <div class="card" ng-if="vm.funcion.asientos <= 0">
             <div class="item" style="text-align: center;">
                 <h1 style="font-size:20px;"> No hay asientos disponibles</h1>
             </div>
         </div>
-        <div class="card" ng-if="vm.funcion[0].Asientos > 0">
-            <div class="item item-divider fondo">
-                Compra
+        <div ng-if="vm.funcion.asientos > 0">
+            <div class="card">
+                <div class="item item-divider fondo">
+                    Compra
+                </div>
+                <div class="item item-avatar">
+                    <img src="{{ vm.pelicula.poster }}">
+                    <h2>{{ vm.pelicula.nombre }}</h2>
+                    <p>{{ vm.funcion.dia | date: 'medium'}}</p>
+                </div>
+                <div class="item item-text-wrap">
+                    <form class="create-form" role="form"
+                          ng-submit="vm.getFuncion(); vm.crearCompra(vm.nuevaCompra.asientos, vm.funcion.asientos, vm.funcion.id)">
+                        <div class="list" style="margin-top: -10px;">
+                            <label class="item item-input">
+                                <span class="input-label">Asientos</span>
+                                <input type="text" ng-model="vm.nuevaCompra.asientos" required>
+                            </label>
+                            <button class="button button-block button-assertive">
+                                Comprar
+                            </button>
+                    </form>
+                </div>
+                <div class="item item-text-wrap" ng-if="vm.error" style="margin-bottom: -10px">
+                    <p>{{ vm.error }}</p>
+                </div>
             </div>
-            <div class="item item-avatar">
-                <img src="{{ vm.pelicula[0].Poster }}">
-                <h2>{{ vm.pelicula[0].Nombre }}</h2>
-                <p>{{ vm.funcion[0].Dia | date: 'medium'}}</p>
+            <div class="item item-divider">
+                Quedan solo {{ vm.funcion.asientos }} asiento(s)
             </div>
-            <div class="item item-text-wrap">
-                <form class="create-form" role="form" ng-submit="vm.getFuncion(); vm.crearCompra(vm.nuevaCompra.Nombre, vm.nuevaCompra.Asientos, vm.funcion[0].Asientos, vm.funcion[0].Cine, vm.funcion[0].Sala, vm.funcion[0].Dia)">
-                    <div class="list" style="margin-top: -10px;">
-                        <label class="item item-input">
-                            <span class="input-label">Nombre</span>
-                            <input type="text" ng-model="vm.nuevaCompra.Nombre" required>
-                        </label>
-                        <label class="item item-input">
-                            <span class="input-label">Asientos</span>
-                            <input type="text" ng-model="vm.nuevaCompra.Asientos" required>
-                        </label>
-                        <button class="button button-block button-assertive">
-                            Comprar
-                        </button>
-                </form>
-            </div>
-            <div class="item item-text-wrap" ng-if="vm.error" style="margin-bottom: -10px">
-                <p>{{ vm.error }}</p>
-            </div>
-        </div>
-        <div class="item item-divider">
-            Quedan solo {{ vm.funcion[0].Asientos }} asiento(s)
-        </div>
         </div>
     </ion-content>
 </ion-view>

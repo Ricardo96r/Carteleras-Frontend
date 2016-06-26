@@ -1,0 +1,29 @@
+<ion-view view-title="Cuenta">
+    <ion-content class="content padding has-header" style="background-color: #f3f3eb;">
+        <div class="list">
+            <a class="item item-icon-left" href="#">
+                <i class="icon ion-person"></i>
+                {{vm.usuario.nombre}}
+                <p>{{vm.usuario.email}}</p>
+            </a>
+        </div>
+        <div class="card" ng-if="vm.usuario.compras.length == 0">
+            <div class="item" style="text-align: center;">
+                <h1 style="font-size:20px;"> No ha realizado compras</h1>
+            </div>
+        </div>
+        <div class="list" ng-if="vm.usuario.compras.length != 0">
+            <div class="item item-divider">
+                Compras
+            </div>
+            <a class="item item-avatar" ng-repeat="compra in vm.usuario.compras" href="#/tabs/cuenta/recibo/{{compra.id}}/busqueda">
+                <img src="{{compra.funcion.pelicula.poster}}">
+                <h2>{{compra.funcion.pelicula.nombre}}</h2>
+                <p>{{compra.funcion.dia}} en el {{compra.funcion.sala.cine.nombre}}</p>
+            </a>
+        </div>
+        <button class="button button-block button-assertive" ng-click="vm.cerrarSesion()">
+            Cerrar sesión
+        </button>
+    </ion-content>
+</ion-view>

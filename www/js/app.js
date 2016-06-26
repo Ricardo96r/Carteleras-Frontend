@@ -1,33 +1,20 @@
-// Ionic template App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'SimpleRESTIonic' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controllers', 'SimpleRESTIonic.services'])
+angular.module('SimpleRESTIonic', ['ionic', 'ngStorage', 'SimpleRESTIonic.controllers', 'SimpleRESTIonic.services'])
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
-            // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-            // for form inputs)
             if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
                 cordova.plugins.Keyboard.disableScroll(true);
 
             }
             if (window.StatusBar) {
-                // org.apache.cordova.statusbar required
                 StatusBar.styleLightContent();
             }
         });
     })
-    .config(function (BackandProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
 
-        BackandProvider.setAppName('cartelerascaracas'); // change here to your app name
-        BackandProvider.setSignUpToken('ef8be651-e9fe-4a7e-8f76-c0cee7416d65'); //token that enable sign up. see http://docs.backand.com/en/latest/apidocs/security/index.html#sign-up
-        BackandProvider.setAnonymousToken('b41abe65-ce24-46af-9794-97e9d8f955a5'); // token is for anonymous login. see http://docs.backand.com/en/latest/apidocs/security/index.html#anonymous-access
-
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         $stateProvider
-        // setup an abstract state for the tabs directive
             .state('tab', {
                 url: '/tabs',
                 abstract: true,
@@ -55,7 +42,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
             .state('tab.compra', {
-                url: '/pelicula/:idPelicula/:nombrePelicula/cine/:idCine/funcion/:funcionHora/sala/:idSala',
+                url: '/pelicula/:idPelicula/:nombrePelicula/funcion/:idFuncion',
                 views: {
                     'tab-dashboard': {
                         templateUrl: 'templates/tab-compra.html',
@@ -72,6 +59,27 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                     }
                 },
             })
+            .state('tab.dashboardlogin', {
+                url: '/dashboard/cuenta/login/:dashboard',
+                views: {
+                    'tab-dashboard': {
+                        templateUrl: 'templates/tab-login.html',
+                        controller: 'LoginCtrl as vm',
+                    }
+                },
+            })
+            .state('tab.dashboardcrearcuenta', {
+                url: '/dashboard/cuenta/crear/:dashboard',
+                views: {
+                    'tab-dashboard': {
+                        templateUrl: 'templates/tab-crear-cuenta.html',
+                        controller: 'CrearCuentaCtrl as vm',
+                    }
+                },
+            })
+            /*
+             Tab cine
+             */
             .state('tab.cine', {
                 url: '/cine',
                 views: {
@@ -81,9 +89,6 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                     },
                 }
             })
-            /*
-             Tab cine
-             */
             .state('tab.cinepeliculas', {
                 url: '/cine/:idCine/:nombreCine',
                 views: {
@@ -103,7 +108,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
             .state('tab.ccompra', {
-                url: '/pelicula/:idPelicula/:nombrePelicula/cine/:idCine/funcion/:funcionHora/sala/:idSala/cine/:cine',
+                url: '/pelicula/:idPelicula/:nombrePelicula/funcion/:idFuncion/:cine',
                 views: {
                     'tab-cine': {
                         templateUrl: 'templates/tab-compra.html',
@@ -117,6 +122,24 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                     'tab-cine': {
                         templateUrl: 'templates/tab-recibo.html',
                         controller: 'CompraCtrl as vm',
+                    }
+                },
+            })
+            .state('tab.cinelogin', {
+                url: '/cine/cuenta/login/:cine',
+                views: {
+                    'tab-cine': {
+                        templateUrl: 'templates/tab-login.html',
+                        controller: 'LoginCtrl as vm',
+                    }
+                },
+            })
+            .state('tab.cinecrearcuenta', {
+                url: '/cine/cuenta/crear/:cine',
+                views: {
+                    'tab-cine': {
+                        templateUrl: 'templates/tab-crear-cuenta.html',
+                        controller: 'CrearCuentaCtrl as vm',
                     }
                 },
             })
@@ -154,6 +177,27 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                     }
                 },
             })
+
+            .state('tab.director', {
+                url: '/busqueda/director',
+                views: {
+                    'tab-busqueda': {
+                        templateUrl: 'templates/tab-busqueda-director.html',
+                        controller: 'Busquedadirect as vm',
+                    }
+                },
+            })
+
+            .state('tab.Pdirector', {
+                url: '/artista/:id',
+                views: {
+                    'tab-busqueda': {
+                        templateUrl: 'templates/tab-artista-pelicula.html',
+                        controller: 'Busquedapelid as vm',
+                    }
+                },
+            })
+
             .state('tab.bpelicula', {
                 url: '/pelicula/:idPelicula/:nombrePelicula/:busqueda',
                 views: {
@@ -164,7 +208,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
             .state('tab.bcompra', {
-                url: '/pelicula/:idPelicula/:nombrePelicula/cine/:idCine/funcion/:funcionHora/sala/:idSala/:busqueda',
+                url: '/busqueda/pelicula/:idPelicula/:nombrePelicula/funcion/:idFuncion/:busqueda',
                 views: {
                     'tab-busqueda': {
                         templateUrl: 'templates/tab-compra.html',
@@ -182,45 +226,64 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                 },
             })
 
-            //buscar por director
-            .state('tab.director', {
-                url: '/busqueda',
+            .state('tab.busquedalogin', {
+                url: '/busqueda/cuenta/login/:busqueda',
                 views: {
                     'tab-busqueda': {
-                        templateUrl: 'templates/tab-busqueda-director.html',
-                        controller: 'Busquedadirect as vm'
-                    },
-                }
+                        templateUrl: 'templates/tab-login.html',
+                        controller: 'LoginCtrl as vm',
+                    }
+                },
+            })
+            .state('tab.busquedacrearcuenta', {
+                url: '/busqueda/cuenta/crear/:busqueda',
+                views: {
+                    'tab-busqueda': {
+                        templateUrl: 'templates/tab-crear-cuenta.html',
+                        controller: 'CrearCuentaCtrl as vm',
+                    }
+                },
+            })
+            /*
+             Cuenta
+             */
+            .state('tab.cuenta', {
+                url: '/cuenta',
+                views: {
+                    'tab-cuenta': {
+                        templateUrl: 'templates/tab-cuenta.html',
+                        controller: 'CuentaCtrl as vm',
+                    }
+                },
+            })
+            .state('tab.login', {
+                url: '/cuenta/login',
+                views: {
+                    'tab-cuenta': {
+                        templateUrl: 'templates/tab-login.html',
+                        controller: 'LoginCtrl as vm',
+                    }
+                },
+            })
+            .state('tab.crearcuenta', {
+                url: '/cuenta/crear',
+                views: {
+                    'tab-cuenta': {
+                        templateUrl: 'templates/tab-crear-cuenta.html',
+                        controller: 'CrearCuentaCtrl as vm',
+                    }
+                },
+            })
+            .state('tab.cuentarecibo', {
+                url: '/cuenta/recibo/:idCompra/:busquedaRecibo',
+                views: {
+                    'tab-cuenta': {
+                        templateUrl: 'templates/tab-recibo.html',
+                        controller: 'CompraCtrl as vm',
+                    }
+                },
+
             });
 
         $urlRouterProvider.otherwise('/tabs/dashboard');
-
-        $httpProvider.interceptors.push('APIInterceptor');
     })
-
-    .run(function ($rootScope, $state, LoginService, Backand) {
-
-        function unauthorized() {
-            console.log("user is unauthorized, sending to login");
-            $state.go('tab.login');
-        }
-
-        function signout() {
-            LoginService.signout();
-        }
-
-        $rootScope.$on('unauthorized', function () {
-            unauthorized();
-        });
-
-        $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-            if (toState.name == 'tab.login') {
-                signout();
-            }
-            else if (toState.name != 'tab.login' && Backand.getToken() === undefined) {
-                unauthorized();
-            }
-        });
-
-    })
-

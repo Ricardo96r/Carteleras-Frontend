@@ -1,44 +1,52 @@
 <ion-view view-title="Cartelera">
     <ion-content class="padding has-header" overflow-scroll="true" style="background-color: #f3f3eb;">
-        
-            <h4 class="cartelera-genero">Nuevos estrenos</h4>
-            <div class="ion-scroll-horizontal-fix">
-                <div class="row">
-                    <div class="col poster" ng-repeat="nuevo in vm.estreno">
-                        <a href="#/tabs/pelicula/{{nuevo.id}}/{{nuevo.nombre}}" style="text-decoration:none;">
-                            <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
-                                <div class="item">
-                                    <h2>{{ nuevo.nombre }}</h2>
-                                </div>
-                                <div class="item item-image">
-                                    <img src="{{ nuevo.poster }}" style="max-height: 180px;">
-                                </div>
-                            </div>
-                        </a>
+        <ul class="list" style="margin-bottom: 0px;">
+            <li class="item item-toggle" style="border-radius: 10px;">
+                Solo películas del día
+                <label class="toggle toggle-assertive" ng-click="vm.diaSemanaToogleClick()">
+                    <input type="checkbox" ng-model="vm.diaSemanaToogle">
+                    <div class="track">
+                        <div class="handle"></div>
                     </div>
+                </label>
+            </li>
+        </ul>
+        <h4 class="cartelera-genero">Nuevos estrenos</h4>
+        <div class="ion-scroll-horizontal-fix">
+            <div class="row">
+                <div class="col poster" ng-repeat="nuevo in vm.estreno">
+                    <a href="#/tabs/pelicula/{{nuevo.id}}/{{nuevo.nombre}}" style="text-decoration:none;">
+                        <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
+                            <div class="item">
+                                <h2>{{ nuevo.nombre }}</h2>
+                            </div>
+                            <div class="item item-image">
+                                <img src="{{ nuevo.poster }}" style="max-height: 180px;">
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
-
-
-                <h4 class="cartelera-genero">Destacados</h4>
-                <div class="ion-scroll-horizontal-fix">
-                    <div class="row">
-                        <div class="col poster" ng-repeat="destacado in vm.destacados">
-                            <a href="#/tabs/pelicula/{{destacado.id}}/{{destacado.nombre}}" style="text-decoration:none;">
-                                <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
-                                    <div class="item">
-                                        <h2>{{ destacado.nombre }}</h2>
-                                    </div>
-                                    <div class="item item-image">
-                                        <img src="{{ destacado.poster }}" style="max-height: 180px;">
-                                    </div>
-                                </div>
-                            </a>
+        </div>
+        <h4 class="cartelera-genero">Destacados</h4>
+        <div class="ion-scroll-horizontal-fix">
+            <div class="row">
+                <div class="col poster" ng-repeat="destacado in vm.destacados">
+                    <a href="#/tabs/pelicula/{{destacado.id}}/{{destacado.nombre}}" style="text-decoration:none;">
+                        <div class="list card" style="margin-top: -5px; margin-bottom: 5px;">
+                            <div class="item">
+                                <h2>{{ destacado.nombre }}</h2>
+                            </div>
+                            <div class="item item-image">
+                                <img src="{{ destacado.poster }}" style="max-height: 180px;">
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
+            </div>
+        </div>
 
-				
+
         <div ng-repeat="genero in vm.generos.data">
             <h4 class="cartelera-genero">{{ genero.genero }}</h4>
             <div class="ion-scroll-horizontal-fix">
