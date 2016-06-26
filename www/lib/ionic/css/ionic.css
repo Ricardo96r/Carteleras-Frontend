@@ -8515,7 +8515,7 @@ progress {
  * --------------------------------------------------
  */
 .button {
-  border-color: transparent;
+  border-color: #b2b2b2;
   background-color: #f8f8f8;
   color: #444;
   position: relative;
@@ -8523,15 +8523,15 @@ progress {
   margin: 0;
   padding: 0 12px;
   min-width: 52px;
-  min-height: 47px;
+  min-height: 30px;
   border-width: 1px;
   border-style: solid;
-  border-radius: 4px;
+  border-radius: 2px;
   vertical-align: top;
   text-align: center;
   text-overflow: ellipsis;
   font-size: 16px;
-  line-height: 42px;
+  line-height: 30px;
   cursor: pointer; }
   .button:hover {
     color: #444;

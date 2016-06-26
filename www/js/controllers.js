@@ -66,7 +66,7 @@ angular.module('SimpleRESTIonic.controllers', [])
         getMunicipios();
     })
 
-    .controller('BusquedaCtrl', function (CompraModel, PeliculasModel, $window, $stateParams, $ionicLoading) {
+    .controller('BusquedaCtrl', function (CompraModel,$state, PeliculasModel, $window, $stateParams, $ionicLoading,$scope,$ionicPopup) {
         var vm = this;
 
         function obtenerPeliculas() {
@@ -75,23 +75,62 @@ angular.module('SimpleRESTIonic.controllers', [])
                 .then(function (result) {
                     vm.todas = result.data;
                     $ionicLoading.hide();
+                    //console.log(result.data);
                 });
         }
 
-        function buscarRecibo(idRecibo) {
-            vm.urlAction = "#/tabs/recibo/" + idRecibo + "/busqueda";
-            $window.location.href = vm.urlAction;
-        }
 
-        function buscarPelicula(nombrePelicula) {
-            vm.urlAction = "#/tabs/busqueda/pelicula/" + nombrePelicula;
-            $window.location.href = vm.urlAction;
-        }
+        //function buscarRecibo(idRecibo) {
+        //    vm.urlAction = "#/tabs/recibo/" + idRecibo + "/busqueda";
+        //    $window.location.href = vm.urlAction;
+        //}
 
-        vm.buscarPelicula = buscarPelicula;
-        vm.buscarRecibo = buscarRecibo;
+        //function buscarPelicula(nombrePelicula) {
+        //    vm.urlAction = "#/tabs/busqueda/pelicula/" + nombrePelicula;
+        //    $window.location.href = vm.urlAction;
+        //}
+
+        //vm.buscarPelicula = buscarPelicula;
+        //vm.buscarRecibo = buscarRecibo;
         obtenerPeliculas();
 
+        $scope.showConfirm = function() {
+            $window.location.href = "tab/busquedadirector";
+        };
+    })
+
+    .controller('Busquedadirect', function (CompraModel, PeliculasModel, $window, $stateParams, $ionicLoading,$scope) {
+        var vm = this;
+        //console.log("aaaa");
+
+        function obtenerPeliculas() {
+            $ionicLoading.show();
+            PeliculasModel.todas()
+                .then(function (result) {
+                    vm.todas = result.data;
+                    $ionicLoading.hide();
+                    //console.log(result.data);
+                });
+        }
+
+
+        //function buscarRecibo(idRecibo) {
+        //    vm.urlAction = "#/tabs/recibo/" + idRecibo + "/busqueda";
+        //    $window.location.href = vm.urlAction;
+        //}
+
+        //function buscarPelicula(nombrePelicula) {
+        //    vm.urlAction = "#/tabs/busqueda/pelicula/" + nombrePelicula;
+        //    $window.location.href = vm.urlAction;
+        //}
+
+        //vm.buscarPelicula = buscarPelicula;
+        //vm.buscarRecibo = buscarRecibo;
+        obtenerPeliculas();
+
+        $scope.showConfirm = function() {
+            $window.location.href = $stateParams.busqueda-director;
+        };
     })
 
     .controller('PeliculaCtrl', function (PeliculasModel, $stateParams, $ionicLoading) {

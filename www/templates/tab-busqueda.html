@@ -6,6 +6,10 @@
                 <input type="text" placeholder="Búsqueda de películas" ng-model="searchpeliculas.nombre">
             </label>
         </div>
+        <button class="button button-outline button-assertive" ng-click="showConfirm()" color="#e42012">
+            Director
+        </button>
+        <div class="spacer" style="height: 20px;"></div>
 		<div class="list" ng-repeat="pelicula in todas = (vm.todas | filter:searchpeliculas)">
             <a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.id}}/{{pelicula.nombre}}/busqueda" style="text-decoration:none;">
                 <img src="{{pelicula.poster}}" style="width: 100%">

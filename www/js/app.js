@@ -180,6 +180,17 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
                         controller: 'CompraCtrl as vm',
                     }
                 },
+            })
+
+            //buscar por director
+            .state('tab.director', {
+                url: '/busqueda',
+                views: {
+                    'tab-busqueda': {
+                        templateUrl: 'templates/tab-busqueda-director.html',
+                        controller: 'Busquedadirect as vm'
+                    },
+                }
             });
 
         $urlRouterProvider.otherwise('/tabs/dashboard');

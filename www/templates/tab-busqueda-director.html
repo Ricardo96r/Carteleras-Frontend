@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<ion-view view-title="Busqueda">
+    <ion-content class="padding has-header" style="margin-top: -10px;background-color: #f3f3eb;">
+        <div class="list list-inset">
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Búsqueda de películas" ng-model="searchpeliculas.nombre">
+            </label>
+        </div>
+        <button class="button button-primary" ng-click="showConfirm()" color="#e42012" height="20">
+            Pelicula
+        </button>
+        <div class="spacer" style="height: 20px;"></div>
+        <div class="list" ng-repeat="pelicula in todas = (vm.todas | filter:searchpeliculas)">
+            <a class="item item-thumbnail-left" href="#/tabs/pelicula/{{pelicula.id}}/{{pelicula.nombre}}/busqueda" style="text-decoration:none;">
+                <img src="{{pelicula.poster}}" style="width: 100%">
+                <h2>{{ pelicula.nombre }}</h2>
+                <p>Censura: {{ pelicula.clasificacion }}</p>
+                <p>{{ pelicula.duracion }} minutos</p>
+                <p>Género: {{ pelicula.genero }}</p>
+            </a>
+            <h1 ng-if="todas.length == 0" style="font-size:20px;"> No hay funciones disponibles</h1>
+            <div class="list" ng-show="!todas.length" style="text-align: center;">
+                <h1 ng-show="!todas.length" style="font-size:20px;"> No hay funciones disponibles</h1>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
