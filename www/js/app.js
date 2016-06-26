@@ -78,7 +78,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'ngStorage', 'SimpleRESTIonic.contro
                 },
             })
             /*
-                 Tab cine
+             Tab cine
              */
             .state('tab.cine', {
                 url: '/cine',
@@ -177,6 +177,27 @@ angular.module('SimpleRESTIonic', ['ionic', 'ngStorage', 'SimpleRESTIonic.contro
                     }
                 },
             })
+
+            .state('tab.director', {
+                url: '/busqueda/director',
+                views: {
+                    'tab-busqueda': {
+                        templateUrl: 'templates/tab-busqueda-director.html',
+                        controller: 'Busquedadirect as vm',
+                    }
+                },
+            })
+
+            .state('tab.Pdirector', {
+                url: '/artista/:id',
+                views: {
+                    'tab-busqueda': {
+                        templateUrl: 'templates/tab-artista-pelicula.html',
+                        controller: 'Busquedapelid as vm',
+                    }
+                },
+            })
+
             .state('tab.bpelicula', {
                 url: '/pelicula/:idPelicula/:nombrePelicula/:busqueda',
                 views: {
@@ -264,5 +285,3 @@ angular.module('SimpleRESTIonic', ['ionic', 'ngStorage', 'SimpleRESTIonic.contro
 
         $urlRouterProvider.otherwise('/tabs/dashboard');
     })
-
-

@@ -270,7 +270,7 @@ angular.module('SimpleRESTIonic.controllers', [])
         getMunicipios();
     })
 
-    .controller('BusquedaCtrl', function (CompraModel, PeliculasModel, $window, $stateParams, $ionicLoading) {
+    .controller('BusquedaCtrl', function (CompraModel,$state, PeliculasModel, $window, $stateParams, $ionicLoading,$scope,$ionicPopup) {
         var vm = this;
 
         function obtenerPeliculas() {
@@ -279,22 +279,50 @@ angular.module('SimpleRESTIonic.controllers', [])
                 .then(function (result) {
                     vm.todas = result.data;
                     $ionicLoading.hide();
+                    //console.log(result.data);
                 });
         }
 
-        function buscarRecibo(idRecibo) {
-            vm.urlAction = "#/tabs/recibo/" + idRecibo + "/busqueda";
-            $window.location.href = vm.urlAction;
-        }
-
-        function buscarPelicula(nombrePelicula) {
-            vm.urlAction = "#/tabs/busqueda/pelicula/" + nombrePelicula;
-            $window.location.href = vm.urlAction;
-        }
-
-        vm.buscarPelicula = buscarPelicula;
-        vm.buscarRecibo = buscarRecibo;
         obtenerPeliculas();
+
+        $scope.showConfirm = function() {
+            $window.location.href = "#/tabs/busqueda/director";
+        };
+    })
+
+    .controller('Busquedadirect', function (CompraModel, PeliculasModel, $window, $stateParams, $ionicLoading,$scope) {
+        var vm = this;
+
+        function obtenerArtista() {
+            $ionicLoading.show();
+            PeliculasModel.artistas()
+                .then(function (result) {
+                    vm.todas = result.data;
+                    $ionicLoading.hide();
+                });
+        }
+
+        obtenerArtista();
+
+        $scope.showConfirm = function() {
+            $window.location.href = "#/tabs/busqueda";
+        };
+    })
+
+    .controller('Busquedapelid', function (CompraModel, PeliculasModel, $window, $stateParams, $ionicLoading,$scope) {
+        var vm = this;
+
+        function obtenerPeliculaArtista() {
+            $ionicLoading.show();
+            PeliculasModel.peliculasPorArtista($stateParams.id)
+                //alert($stateParams.id)
+                .then(function (result) {
+                    vm.todas = result.data;
+                    $ionicLoading.hide();
+                });
+        }
+
+        obtenerPeliculaArtista();
 
     })
 

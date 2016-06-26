@@ -1,4 +1,4 @@
-angular.module('SimpleRESTIonic.services', [])
+ angular.module('SimpleRESTIonic.services', [])
 
     .constant('api', {
         url: 'http://cartelerascaracas.us-west-2.elasticbeanstalk.com/api/v1/',
